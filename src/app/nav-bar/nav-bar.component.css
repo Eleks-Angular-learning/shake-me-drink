@@ -1,0 +1,13 @@
+.nav-menu {
+    list-style-type: none;
+}
+.nav-menu li {
+    color: #646464;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nav-menu li.active {
+    color: red;
+}

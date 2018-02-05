@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { CocktailComponent } from './cocktail/cocktail.component';
 import { SearchComponent } from './search/search.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CocktailComponent,
-    SearchComponent
+    SearchComponent,
+    NavBarComponent
   ],
   imports: [
     AppRoutingModule,
