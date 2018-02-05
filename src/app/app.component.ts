@@ -15,6 +15,8 @@ export class AppComponent {
   title = 'app';
 
   ngOnInit () {
-    this.cocktailsService.getCocktails().subscribe(res => this.cocktails = res);
+    this.cocktailsService.getCocktails().subscribe(res => {
+      return this.cocktails = res
+    });
   }
 }
