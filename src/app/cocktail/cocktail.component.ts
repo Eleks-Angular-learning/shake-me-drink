@@ -1,17 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cocktail',
   templateUrl: './cocktail.component.html',
   styleUrls: ['./cocktail.component.css']
 })
-export class CocktailComponent implements OnInit {
-
+export class CocktailComponent {
   @Input() cocktail;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

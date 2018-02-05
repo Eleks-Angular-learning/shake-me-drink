@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CocktailsService } from '../services/cocktails.service';
 
 @Component({
@@ -7,16 +7,13 @@ import { CocktailsService } from '../services/cocktails.service';
   styleUrls: ['./app.component.css'],
   providers: [ CocktailsService ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   cocktails: any;
-  constructor (private cocktailsService: CocktailsService) {
-
-  }
-  title = 'app';
+  constructor (private cocktailsService: CocktailsService) {}
 
   ngOnInit () {
-    this.cocktailsService.getCocktails().subscribe(res => {
-      return this.cocktails = res
+    this.cocktailsService.getCocktails().subscribe(cocktails => {
+      return this.cocktails = cocktails;
     });
   }
 }
