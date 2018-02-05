@@ -1,12 +1,5 @@
-<div>
-  <h1>
-   Cocktails
-  </h1>
-</div>
+<router-outlet></router-outlet>
+<div><h1>Cocktails</h1></div>
 <div class="ui-g">
-  <app-cocktail
-    *ngFor="let cocktail of cocktails"
-    [cocktail]="cocktail"
-  ></app-cocktail>
+  <app-cocktail *ngFor="let cocktail of cocktails" [cocktail]="cocktail"></app-cocktail>
 </div>
-

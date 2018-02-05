@@ -4,14 +4,18 @@ import { HttpModule } from '@angular/http';
 import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
 import { CocktailComponent } from './cocktail/cocktail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     CocktailComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpModule,
     CardModule
