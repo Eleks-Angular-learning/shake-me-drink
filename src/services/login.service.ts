@@ -5,9 +5,18 @@ import { Injectable } from '@angular/core';
 export class LoginService {
   constructor (private http: HttpClient) {}
 
+  loggedIn = false;
+
+  isAuthenticated () {
+    return this.loggedIn;
+  }
+
   login (data) {
     return new Promise(resolve => {
-      setTimeout(() => resolve(data), 3000);
+      setTimeout(() => {
+        this.loggedIn = true;
+        resolve(data);
+      }, 2000);
     });
   }
 }

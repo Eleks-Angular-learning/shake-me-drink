@@ -17,6 +17,7 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
 import {LoginService} from '../services/login.service';
 import { LoaderComponent } from './loader/loader.component';
 import {LoaderService} from '../services/loader.service';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import {LoaderService} from '../services/loader.service';
     FormsModule,
     CardModule
   ],
-  providers: [LoginService, LoaderService],
+  providers: [LoginService, LoaderService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

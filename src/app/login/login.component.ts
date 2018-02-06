@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {LoaderService} from '../../services/loader.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import {LoaderService} from '../../services/loader.service';
 })
 export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
-              private loaderService: LoaderService) { }
+              private loaderService: LoaderService,
+              private router: Router) { }
 
   formState = {
     organizationID: '',
@@ -23,7 +25,12 @@ export class LoginComponent implements OnInit {
       console.error('response', response);
       this.resetFormState();
       this.loaderService.display(false);
+      this.redirectToMainPage();
     });
+  }
+
+  redirectToMainPage () {
+    this.router.navigate(['/']);
   }
 
   resetFormState () {
@@ -38,6 +45,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit () {
+    if (this.loginService.isAuthenticated()) {
+      this.redirectToMainPage();
+    }
   }
 
 }
