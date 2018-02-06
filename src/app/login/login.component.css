@@ -1,0 +1,12 @@
+.login-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: orange;
+}
+
+.login-form {
+  background: ghostwhite;
+  padding: 20px;
+}
