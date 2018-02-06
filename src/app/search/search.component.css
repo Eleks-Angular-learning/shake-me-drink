@@ -21,3 +21,8 @@
 .searchbar input::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
+.cocktails-container {
+  margin-top: 20px;
+  height: 75vh;
+  overflow: auto;
+}

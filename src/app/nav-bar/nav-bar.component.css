@@ -6,6 +6,7 @@
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+    outline: none;
 }
 
 .nav-menu li.active {
