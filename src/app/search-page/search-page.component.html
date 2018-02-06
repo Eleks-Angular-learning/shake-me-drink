@@ -1,0 +1,4 @@
+<div class="container">
+  <app-search (onFilter)="onFilterChange($event)"></app-search>
+  <app-results-list [cocktails]="filteredCocktailsList"></app-results-list>
+</div>

@@ -1,0 +1,11 @@
+.no-search-results {
+  color: white;
+  font-size: 2em;
+  margin: 0 auto;
+}
+.cocktails-container {
+  display: flex;
+  margin-top: 20px;
+  height: 75vh;
+  overflow: auto;
+}
