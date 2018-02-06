@@ -1,10 +1,8 @@
-<div class="ui-g-4">
-<p-card title={{cocktail.strDrink}} [style]="{width: '260px'}" styleClass="ui-card-shadow">
+<p-card class="cocktail">
   <p-header>
-    <img [src]="'http://' + cocktail.strDrinkThumb">
+    <img [src]="getImageUrl(cocktail)">
   </p-header>
-  <div></div>
   <p-footer>
+    {{cocktail.strDrink}}
   </p-footer>
 </p-card>
-</div>
