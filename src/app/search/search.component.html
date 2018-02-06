@@ -1,4 +1,18 @@
-<div class="ui-g">
-  <app-cocktail *ngFor="let cocktail of cocktails" [cocktail]="cocktail"></app-cocktail>
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12 ui-md-4 ui-md-offset-4">
+      <label class="ui-g-12 searchbar">
+        <i class="fa fa-search"></i>
+        <input type="text" class="ui-g-11" placeholder="Search..." [(ngModel)]="cocktailsFilter"/>
+      </label>
+    </div>
+  </div>
+  <div class="ui-g">
+    <app-cocktail
+      class="ui-g-12 ui-md-6 ui-lg-3"
+      *ngFor="let cocktail of cocktails | filterCocktails : cocktailsFilter"
+      [cocktail]="cocktail"
+    ></app-cocktail>
+  </div>
 </div>
 
