@@ -1,8 +1,5 @@
-<p-card class="cocktail">
-  <p-header>
-    <img [src]="getImageUrl(cocktail)">
-  </p-header>
-  <p-footer>
-    {{cocktail.strDrink}}
-  </p-footer>
-</p-card>
+<div class="cocktail" [ngStyle]="getCocktailStyles(cocktail)">
+  <div class="cocktail-name">
+    <p>{{cocktail.strDrink}}</p>
+  </div>
+</div>

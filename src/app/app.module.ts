@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,8 +34,7 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    CardModule
+    FormsModule
   ],
   providers: [CocktailsService],
   bootstrap: [AppComponent]
