@@ -8,7 +8,7 @@ export class CocktailsService {
   constructor (private http: HttpClient) {}
 
   getCocktails() {
-    return this.http.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
+    return this.http.get('//www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
       .map(res => res['drinks']);
   }
 }
