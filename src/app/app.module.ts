@@ -13,6 +13,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FilterCocktailsPipe } from '../pipes/filter-cocktails.pipe';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
+import { VideoBackgroundComponent } from './video-background/video-background.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
     NavBarComponent,
     FilterCocktailsPipe,
     MainPageComponent,
-    MakeCocktailComponent
+    MakeCocktailComponent,
+    VideoBackgroundComponent
   ],
   imports: [
     AppRoutingModule,
