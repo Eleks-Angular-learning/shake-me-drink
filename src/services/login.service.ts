@@ -1,0 +1,13 @@
+import { HttpClient  } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class LoginService {
+  constructor (private http: HttpClient) {}
+
+  login (data) {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(data), 3000);
+    });
+  }
+}

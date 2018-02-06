@@ -14,6 +14,9 @@ import { FilterCocktailsPipe } from '../pipes/filter-cocktails.pipe';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { VideoBackgroundComponent } from './video-background/video-background.component';
+import {LoginService} from '../services/login.service';
+import { LoaderComponent } from './loader/loader.component';
+import {LoaderService} from '../services/loader.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     FilterCocktailsPipe,
     MainPageComponent,
     MakeCocktailComponent,
-    VideoBackgroundComponent
+    VideoBackgroundComponent,
+    LoaderComponent
   ],
   imports: [
     AppRoutingModule,
@@ -34,7 +38,7 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     FormsModule,
     CardModule
   ],
-  providers: [],
+  providers: [LoginService, LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
