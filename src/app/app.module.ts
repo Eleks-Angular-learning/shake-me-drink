@@ -15,6 +15,7 @@ import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { ResultsListComponent } from './results-list/results-list.component';
 import {CocktailsService} from '../services/cocktails.service';
+import { VideoBackgroundComponent } from './video-background/video-background.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import {CocktailsService} from '../services/cocktails.service';
     MakeCocktailComponent,
     SearchPageComponent,
     ResultsListComponent
+    MakeCocktailComponent,
+    VideoBackgroundComponent
   ],
   imports: [
     AppRoutingModule,
