@@ -27,7 +27,7 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     MainPageComponent,
     MakeCocktailComponent,
     SearchPageComponent,
-    ResultsListComponent
+    ResultsListComponent,
     MakeCocktailComponent,
     VideoBackgroundComponent
   ],
