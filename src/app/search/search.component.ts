@@ -9,6 +9,7 @@ import { CocktailsService } from '../../services/cocktails.service';
 })
 export class SearchComponent implements OnInit {
   cocktails: any;
+  cocktailsFilter: String = '';
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit () {
