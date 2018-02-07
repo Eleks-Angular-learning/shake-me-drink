@@ -1,0 +1,53 @@
+.side-menu {
+  position: absolute;
+  height: 100vh;
+  width: 40%;
+  background-color: rgba(0, 0, 0, .9);
+  transition: width 300ms linear;
+}
+
+@media screen and (max-width: 700px) {
+  .side-menu {
+    width: 100%;
+  }
+}
+
+.hamburger-area {
+  color: #f5651e;
+  font-size: 24px;
+  margin: 0 20px;
+  padding-top: 10px;
+}
+
+.menu-item {
+  color: #fff;;
+  font-family: 'Crafty Girls', cursive;
+  font-size: 24px;
+  margin: 10px 20px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  overflow: hidden;
+  &:hover {
+    color: #ff9561;
+  }
+
+  p {
+    margin-left: 20px;
+  }
+
+  &.active {
+    color: #f5651e;
+    &:hover {
+      color: #f5651e;
+    }
+  }
+}
+
+.thin {
+  width: 70px;
+
+  .menu-item {
+    white-space: nowrap;
+  }
+}
