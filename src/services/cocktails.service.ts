@@ -11,4 +11,9 @@ export class CocktailsService {
     return this.http.get('//www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
       .map(res => res['drinks']);
   }
+
+  getIngredients () {
+    return this.http.get('http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+      .map(res => res['drinks']);
+  }
 }

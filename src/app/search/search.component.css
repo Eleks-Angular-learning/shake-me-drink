@@ -1,3 +1,10 @@
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  color: #fff;
+}
+
 .searchbar {
   display: flex;
   align-items: center;
@@ -25,4 +32,10 @@
   margin-top: 20px;
   height: 75vh;
   overflow: auto;
+}
+
+.search-selector {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }

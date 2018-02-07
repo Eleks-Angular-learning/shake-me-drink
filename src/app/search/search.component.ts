@@ -10,11 +10,17 @@ import { CocktailsService } from '../../services/cocktails.service';
 export class SearchComponent implements OnInit {
   cocktails: any;
   cocktailsFilter: String = '';
-  constructor(private cocktailsService: CocktailsService) { }
+  radioVal: String = '';
+
+  constructor(private cocktailsService: CocktailsService) {}
 
   ngOnInit () {
     this.cocktailsService.getCocktails().subscribe(cocktails => {
       return this.cocktails = cocktails;
     });
+  }
+
+  onChange () {
+    console.error(this.radioVal)
   }
 }

@@ -1,15 +1,15 @@
 
 .nav-menu {
-    list-style-type: none;
+  list-style-type: none;
 }
 .nav-menu li {
-    color: #646464;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
+  color: #646464;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
 }
 
 .nav-menu li.active {
-    color: red;
+  color: red;
 }
