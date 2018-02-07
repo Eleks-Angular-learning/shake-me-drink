@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
 
-import {config} from '../../config/firebase';
-import * as firebase from 'firebase';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,8 +18,10 @@ export class LoginComponent implements OnInit {
   // };
 
   login () {
-    this.loginService.login()
-      .then(() => this.redirectToMainPage());
+    // TODO: probably bug here!!!
+    this.loginService.login();
+      // .then(() => this.redirectToMainPage());
+    this.redirectToMainPage();
   }
 
   redirectToMainPage () {
@@ -45,9 +44,6 @@ export class LoginComponent implements OnInit {
   ngOnInit () {
     if (this.loginService.isAuthenticated()) {
       this.redirectToMainPage();
-    } else {
-      firebase.initializeApp(config);
     }
   }
-
 }

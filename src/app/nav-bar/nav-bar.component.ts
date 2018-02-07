@@ -9,13 +9,10 @@ import {LoginService} from '../../services/login.service';
 export class NavBarComponent implements OnInit {
   user: any = {};
 
-  constructor(private loginService: LoginService) {
-    this.user = this.loginService.getUser();
-  }
+  constructor(private loginService: LoginService) {}
 
   ngOnInit () {
-    this.loginService.userDataChanges$.subscribe((user: any) => {
-      this.user.displayName = user.displayName;
-    });
+    this.user = this.loginService.user;
+    console.error('this.user', this.user);
   }
 }

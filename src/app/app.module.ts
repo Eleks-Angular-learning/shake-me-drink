@@ -20,6 +20,9 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginService} from '../services/login.service';
 import {LoaderService} from '../services/loader.service';
 import {AuthGuardService} from '../services/auth-guard.service';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import {AuthGuardService} from '../services/auth-guard.service';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    CardModule
+    CardModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [LoginService, LoaderService, AuthGuardService],
   bootstrap: [AppComponent]
