@@ -15,11 +15,12 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { VideoBackgroundComponent } from './video-background/video-background.component';
 import { LoaderComponent } from './loader/loader.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import {LoginService} from '../services/login.service';
-import {LoaderService} from '../services/loader.service';
-import {AuthGuardService} from '../services/auth-guard.service';
+import { LoginService } from '../services/login.service';
+import { LoaderService } from '../services/loader.service';
+import { FirebaseService } from '../services/firebase.service';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,12 @@ import {AuthGuardService} from '../services/auth-guard.service';
     FormsModule,
     CardModule
   ],
-  providers: [LoginService, LoaderService, AuthGuardService],
+  providers: [
+    LoginService,
+    LoaderService,
+    AuthGuardService,
+    FirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

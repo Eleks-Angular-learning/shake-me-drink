@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../../services/login.service';
-import {Router} from '@angular/router';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
+import { FirebaseService } from '../../services/firebase.service';
 
-import {config} from '../../config/firebase';
-import * as firebase from 'firebase';
+import { config } from '../../config/firebase';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,12 @@ import * as firebase from 'firebase';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService: LoginService,
-              private router: Router) { }
+  constructor(
+    private router: Router,
+    private location: Location,
+    private loginService: LoginService,
+    private firebase: FirebaseService
+  ) { }
 
   // TODO: uncomment this after integration with firebase
   // formState = {
@@ -22,10 +27,11 @@ export class LoginComponent implements OnInit {
 
   login () {
     this.loginService.login()
-      .then(() => this.redirectToMainPage());
+      .then(this.redirectToMainPage.bind(this));
   }
 
   redirectToMainPage () {
+    this.location.go('/');
     this.router.navigate(['/']);
   }
 
@@ -43,11 +49,11 @@ export class LoginComponent implements OnInit {
   // }
 
   ngOnInit () {
+    const firebaseRef = this.firebase.getRef();
     if (this.loginService.isAuthenticated()) {
       this.redirectToMainPage();
     } else {
-      firebase.initializeApp(config);
+      firebaseRef.initializeApp(config);
     }
   }
-
 }

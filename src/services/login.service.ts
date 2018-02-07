@@ -1,45 +1,55 @@
-import {Injectable, NgZone} from '@angular/core';
-import * as firebase from 'firebase';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { FirebaseService } from './firebase.service';
+import { setTimeout } from 'timers';
+
+const USER_INIT = {
+  displayName: 'No name'
+};
 
 @Injectable()
 export class LoginService {
-  loggedIn = false;
-  user = {
-    displayName: 'Row display name'
-  };
-  _userDataChanges$: BehaviorSubject<any> = new BehaviorSubject<any>({displayName: 'Not authorized!'});
+  private loggedIn = false;
+  private _userDataChanges: BehaviorSubject<any> = new BehaviorSubject<any>(USER_INIT);
 
-  get userDataChanges$ () {
-    return this._userDataChanges$.asObservable();
+  get userData(): any {
+    // Returns cloned row data. Should avoid mutation by object's recreance
+    return {...this._userDataChanges.getValue()};
   }
 
-  getUser () {
-    return this.user;
+  set userData(data) {
+    this._userDataChanges.next(data);
   }
 
-  constructor (private zone: NgZone) {}
-  isAuthenticated () {
+  get userDataChanges(): Observable<any> {
+    // Returns Observable stream
+    return this._userDataChanges;
+  }
+
+  constructor (
+    private firebase: FirebaseService
+  ) {}
+
+  isAuthenticated (): boolean {
     return this.loggedIn;
   }
 
-  login () {
-    const provider = new firebase.auth.FacebookAuthProvider();
+  login (): Promise<any> {
+    const fbProvider = this.firebase
+      .getFacebookAuthProvider()
+      .setCustomParameters({'display': 'popup'});
 
-    provider.setCustomParameters({'display': 'popup'});
-
-    return firebase.auth().signInWithPopup(provider)
-      .then(response => {
-        this.zone.run(() => {
-          const {user} = response;
-
-          console.error('response user', user);
-
+    return new Promise((resolve, reject) => {
+      return this.firebase.signInWithPopup(fbProvider)
+        .then(response => response.user)
+        .then(user => {
           this.loggedIn = true;
-          this.user = user;
-          this._userDataChanges$.next(user);
-        });
-      })
-      .catch(error => console.error(`Error: ${error.message}`));
+          this.userData = user;
+          // Keep setTimeout in order to finish all tarted function invocations
+          return setTimeout(() => resolve(this.userData), 0);
+        })
+        .catch(error => reject({error: error.message}));
+      });
   }
 }

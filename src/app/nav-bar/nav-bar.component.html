@@ -1,6 +1,6 @@
 <div>
   <div style="font-size: 26px; color: white;">
-    User {{user | json}}
+    User {{ (userData$ | async)?.displayName }}
   </div>
   <ul class="nav-menu">
     <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

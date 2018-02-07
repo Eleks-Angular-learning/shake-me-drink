@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {LoginService} from '../../services/login.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,15 +8,13 @@ import {LoginService} from '../../services/login.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  user: any = {};
+  userData$: Observable<any>;
 
-  constructor(private loginService: LoginService) {
-    this.user = this.loginService.getUser();
-  }
+  constructor(
+    private loginService: LoginService
+  ) {}
 
   ngOnInit () {
-    this.loginService.userDataChanges$.subscribe((user: any) => {
-      this.user.displayName = user.displayName;
-    });
+    this.userData$ = this.loginService.userDataChanges;
   }
 }
