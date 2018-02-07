@@ -9,6 +9,10 @@ import { CocktailItem } from '../app.models';
 export class CocktailComponent {
   @Input() cocktail: CocktailItem;
 
+  get name (): string {
+    return this.cocktail.strDrink;
+  }
+
   get imageUrl (): string {
     return `url(//${this.cocktail.strDrinkThumb})`;
   }
