@@ -4,6 +4,6 @@ export interface CocktailItem {
   strDrinkThumb: string;
 }
 
-export interface CocktailsList {
-  drinks: Array<CocktailItem>;
+export interface CocktailsList extends Array<any> {
+  [index: number]: CocktailItem;
 }

@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
+import { CocktailsList } from '../app.models';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
@@ -8,8 +9,8 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
-  cocktailsList: Array<Object> = [];
-  filteredCocktailsList: Array<Object> = [];
+  cocktailsList: CocktailsList = [];
+  filteredCocktailsList: CocktailsList = [];
   cocktailsSubscription: Subscription;
   constructor(private cocktailsService: CocktailsService) { }
 
