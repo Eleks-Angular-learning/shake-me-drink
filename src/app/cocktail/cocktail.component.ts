@@ -14,7 +14,7 @@ export class CocktailComponent {
       'align-items': 'flex-end',
       'width': '260px',
       'height': '350px',
-      'background-image': `url('http://${cocktail.strDrinkThumb}')`,
+      'background-image': `url('//${cocktail.strDrinkThumb}')`,
       'background-size': 'cover',
       'overflow': 'hidden',
       'border-radius': '10px'
