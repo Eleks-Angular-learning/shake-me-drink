@@ -14,8 +14,10 @@ import { FilterCocktailsPipe } from '../pipes/filter-cocktails.pipe';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { VideoBackgroundComponent } from './video-background/video-background.component';
-import {LoginService} from '../services/login.service';
 import { LoaderComponent } from './loader/loader.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
+import {LoginService} from '../services/login.service';
 import {LoaderService} from '../services/loader.service';
 import {AuthGuardService} from '../services/auth-guard.service';
 
@@ -30,7 +32,8 @@ import {AuthGuardService} from '../services/auth-guard.service';
     MainPageComponent,
     MakeCocktailComponent,
     VideoBackgroundComponent,
-    LoaderComponent
+    LoaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     AppRoutingModule,
