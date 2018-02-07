@@ -1,6 +1,7 @@
 
-import { HttpClient  } from '@angular/common/http';
+import { HttpClient, HttpResponse  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CocktailsList } from '../app/app.models';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -9,6 +10,6 @@ export class CocktailsService {
 
   getCocktails() {
     return this.http.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
-      .map(res => res['drinks']);
+      .map((res: HttpResponse<{drinks: CocktailsList}>) => res['drinks']);
   }
 }

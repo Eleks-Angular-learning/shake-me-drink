@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
-  styleUrls: ['./search-page.component.css']
+  styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
   cocktailsList: Array<Object> = [];

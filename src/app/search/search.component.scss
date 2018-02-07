@@ -6,15 +6,15 @@
   border-radius: 20px;
   background-color: black;
   box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.75);
-}
-.searchbar i {
-  color: white;
-  font-size: 24px;
-}
-.searchbar input {
-  border: none;
-  background-color: transparent;
-  color: white;
-  outline: none;
-  font-size: 24px;
+  i {
+    color: white;
+    font-size: 24px;
+  }
+  input {
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    font-size: 24px;
+  }
 }

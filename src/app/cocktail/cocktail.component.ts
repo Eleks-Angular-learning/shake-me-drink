@@ -1,23 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { CocktailItem } from '../app.models';
 
 @Component({
   selector: 'app-cocktail',
   templateUrl: './cocktail.component.html',
-  styleUrls: ['./cocktail.component.css']
+  styleUrls: ['./cocktail.component.scss']
 })
 export class CocktailComponent {
-  @Input() cocktail;
+  @Input() cocktail: CocktailItem;
 
-  getCocktailStyles (cocktail) {
-    return {
-      'display': 'flex',
-      'align-items': 'flex-end',
-      'width': '260px',
-      'height': '350px',
-      'background-image': `url('//${cocktail.strDrinkThumb}')`,
-      'background-size': 'cover',
-      'overflow': 'hidden',
-      'border-radius': '10px'
-    };
+  get imageUrl (): string {
+    return `url(//${this.cocktail.strDrinkThumb})`;
   }
 }
