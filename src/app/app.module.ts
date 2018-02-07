@@ -14,6 +14,7 @@ import { FilterCocktailsPipe } from '../pipes/filter-cocktails.pipe';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
+import { VideoBackgroundComponent } from './video-background/video-background.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
     FilterCocktailsPipe,
     MainPageComponent,
     MakeCocktailComponent,
-    IngredientsComponent
+    IngredientsComponent,
+    VideoBackgroundComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,3 +1,7 @@
-<ul *ngFor="let ingredient of ingredients">
-  <li>{{ingredient.strIngredient1}}</li>
-</ul>
+<div class="ui-g">
+    <div class="ui-g-4 ui-md-3 ui-lg-1 ingredient-el" *ngFor="let ingredient of ingredients">
+      <img class="ingredient-img" [src]="'http://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient1 +'-Medium.png'">
+      <span>{{ingredient.strIngredient1}}</span>
+    </div>
+</div>
+

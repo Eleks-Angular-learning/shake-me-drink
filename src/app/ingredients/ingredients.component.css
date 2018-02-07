@@ -1,0 +1,13 @@
+.ingredient-el {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredient-img {
+  height: 150;
+  width: 150px;
+}
