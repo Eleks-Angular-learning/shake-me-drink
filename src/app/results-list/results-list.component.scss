@@ -1,0 +1,28 @@
+.cocktails-container {
+  display: flex;
+  margin-top: 20px;
+  padding: 10px 20px;
+  height: 70vh;
+  overflow: auto;
+  .no-search-results {
+    color: white;
+    font-size: 2em;
+    margin: 0 auto;
+  }
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background:transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ccc;
+  background: rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+}
+
