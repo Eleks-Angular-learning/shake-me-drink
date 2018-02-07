@@ -1,4 +1,7 @@
 <div>
+  <div style="font-size: 26px; color: white;">
+    User {{user | json}}
+  </div>
   <ul class="nav-menu">
     <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       Home
@@ -8,6 +11,9 @@
     </li>
     <li routerLinkActive="active" routerLink="/make-cocktail">
       Make Cocktail
+    </li>
+    <li routerLinkActive="active" routerLink="/login">
+      Login
     </li>
   </ul>
 </div>

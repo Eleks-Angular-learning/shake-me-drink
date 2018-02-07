@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service';
-import {LoaderService} from '../../services/loader.service';
 import {Router} from '@angular/router';
+
+import {config} from '../../config/firebase';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -10,42 +12,41 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
-              private loaderService: LoaderService,
               private router: Router) { }
 
-  formState = {
-    email: '',
-    password: '',
-  };
+  // TODO: uncomment this after integration with firebase
+  // formState = {
+  //   email: '',
+  //   password: '',
+  // };
 
   login () {
-    this.loaderService.display(true);
-    this.loginService.login(this.formState).then(response => {
-      console.error('response', response);
-      this.resetFormState();
-      this.loaderService.display(false);
-      this.redirectToMainPage();
-    });
+    this.loginService.login()
+      .then(() => this.redirectToMainPage());
   }
 
   redirectToMainPage () {
     this.router.navigate(['/']);
   }
 
-  resetFormState () {
-    Object.keys(this.formState).forEach(key => this.formState[key] = '');
-  }
+  // TODO: uncomment this after integration with firebase
+  // resetFormState () {
+  //   Object.keys(this.formState).forEach(key => this.formState[key] = '');
+  // }
 
-  onFormDataChanged (event) {
-    const {target} = event;
-    const {id, value} = target;
-
-    this.formState[id] = value;
-  }
+  // TODO: uncomment this after integration with firebase
+  // onFormDataChanged (event) {
+  //   const {target} = event;
+  //   const {id, value} = target;
+  //
+  //   this.formState[id] = value;
+  // }
 
   ngOnInit () {
     if (this.loginService.isAuthenticated()) {
       this.redirectToMainPage();
+    } else {
+      firebase.initializeApp(config);
     }
   }
 
