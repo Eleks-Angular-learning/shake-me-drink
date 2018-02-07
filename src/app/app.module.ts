@@ -14,6 +14,12 @@ import { FilterCocktailsPipe } from '../pipes/filter-cocktails.pipe';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { VideoBackgroundComponent } from './video-background/video-background.component';
+import { LoaderComponent } from './loader/loader.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
+import {LoginService} from '../services/login.service';
+import {LoaderService} from '../services/loader.service';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,9 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     FilterCocktailsPipe,
     MainPageComponent,
     MakeCocktailComponent,
-    VideoBackgroundComponent
+    VideoBackgroundComponent,
+    LoaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     AppRoutingModule,
@@ -34,7 +42,7 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     FormsModule,
     CardModule
   ],
-  providers: [],
+  providers: [LoginService, LoaderService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
