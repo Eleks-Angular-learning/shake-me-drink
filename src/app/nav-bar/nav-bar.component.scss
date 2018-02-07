@@ -1,0 +1,35 @@
+.side-menu {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .8);
+  transition: width 300ms linear;
+}
+.hamburger-area {
+  color: #f5651e;
+  font-size: 24px;
+  margin: 10px 20px;
+}
+
+  .menu-item {
+    color: #fff;;
+    font-family: 'Crafty Girls', cursive;
+    font-size: 24px;
+    margin: 10px 20px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    overflow: hidden;
+    p {
+      margin-left: 20px;
+    }
+
+    &.active {
+      color: #f5651e;
+    }
+  }
+
+  .col-md-1 {
+    .menu-item {
+      white-space: nowrap;
+    }
+  }
+
