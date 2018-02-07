@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   formState = {
-    organizationID: '',
-    username: '',
+    email: '',
     password: '',
   };
 
