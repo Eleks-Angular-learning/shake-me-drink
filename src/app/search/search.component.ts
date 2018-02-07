@@ -1,26 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  styleUrls: ['./search.component.scss'],
   providers: [ CocktailsService ]
 })
-export class SearchComponent implements OnInit {
-  cocktails: any;
-  cocktailsFilter: String = '';
-  radioVal: String = '';
+export class SearchComponent {
+  @Output() onFilter = new EventEmitter();
 
-  constructor(private cocktailsService: CocktailsService) {}
+  radioVal: String = 'category';
+  filterValue: String = '';
 
-  ngOnInit () {
-    this.cocktailsService.getCocktails().subscribe(cocktails => {
-      return this.cocktails = cocktails;
-    });
-  }
-
-  onChange () {
-    console.error(this.radioVal)
+  filterChanged () {
+    this.onFilter.emit(this.filterValue);
   }
 }

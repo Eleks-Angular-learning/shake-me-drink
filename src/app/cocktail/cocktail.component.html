@@ -1,10 +1,5 @@
-<div class="ui-g-4">
-<p-card title={{cocktail.strDrink}} [style]="{width: '260px'}" styleClass="ui-card-shadow">
-  <p-header>
-    <img [src]="'http://' + cocktail.strDrinkThumb">
-  </p-header>
-  <div></div>
-  <p-footer>
-  </p-footer>
-</p-card>
+<div class="cocktail" [ngStyle]="{'background-image': imageUrl}">
+  <div class="cocktail-name">
+    <p [textContent]="name"></p>
+  </div>
 </div>
