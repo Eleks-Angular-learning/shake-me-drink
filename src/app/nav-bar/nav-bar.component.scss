@@ -27,12 +27,19 @@
   outline: none;
   display: flex;
   overflow: hidden;
+  &:hover {
+    color: #ff9561;
+  }
+
   p {
     margin-left: 20px;
   }
 
   &.active {
     color: #f5651e;
+    &:hover {
+      color: #f5651e;
+    }
   }
 }
 
