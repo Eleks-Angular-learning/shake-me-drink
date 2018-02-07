@@ -15,6 +15,12 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { ResultsListComponent } from './results-list/results-list.component';
 import {CocktailsService} from '../services/cocktails.service';
 import { VideoBackgroundComponent } from './video-background/video-background.component';
+import { LoaderComponent } from './loader/loader.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
+import {LoginService} from '../services/login.service';
+import {LoaderService} from '../services/loader.service';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,9 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     SearchPageComponent,
     ResultsListComponent,
     MakeCocktailComponent,
-    VideoBackgroundComponent
+    VideoBackgroundComponent,
+    LoaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +44,7 @@ import { VideoBackgroundComponent } from './video-background/video-background.co
     HttpClientModule,
     FormsModule
   ],
-  providers: [CocktailsService],
+  providers: [CocktailsService, LoginService, LoaderService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
