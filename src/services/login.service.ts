@@ -5,7 +5,8 @@ import {AngularFireAuth} from 'angularfire2/auth';
 @Injectable()
 export class LoginService {
   user = {
-    displayName: 'Not authorized'
+    displayName: 'Not authorized',
+    photoURL: 'https://csforallteachers.org/profiles/cs10k/themes/cs10k/images/source/userDefualt.png'
   };
 
   constructor (public afAuth: AngularFireAuth) {}
@@ -24,6 +25,7 @@ export class LoginService {
         .then(data => {
           const {user} = data;
           this.user.displayName = user.displayName;
+          this.user.photoURL = user.photoURL;
           sessionStorage.setItem('loginData', user.uid);
           return resolve(user);
         })

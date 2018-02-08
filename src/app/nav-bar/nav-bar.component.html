@@ -1,4 +1,8 @@
   <ul class="nav nav-menu">
+    <li class="menu-item">
+      <img [src]="user.photoURL" alt="" class="media-object">
+      <p class="menu-item-description">{{user.displayName}}</p>
+    </li>
     <li class="menu-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <span class="glyphicon glyphicon-home"></span>
       <p class="menu-item-description">Home</p>
