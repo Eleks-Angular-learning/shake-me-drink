@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
 import { SelectedIngredients } from '../app.models';
 @Component({
@@ -7,9 +7,10 @@ import { SelectedIngredients } from '../app.models';
   styleUrls: ['./ingredients.component.scss']
 })
 export class IngredientsComponent implements OnInit {
+  @Output() cocktails = new EventEmitter();
+
   ingredients: any;
-  selectedIngredients: SelectedIngredients = [];
-  isSelected: boolean = false;
+  selectedIngredient: string = '';
   isLoading: boolean = false;
 
   constructor(private cocktailsService: CocktailsService) { }
@@ -24,18 +25,19 @@ export class IngredientsComponent implements OnInit {
   }
 
   toggleIngredient (event, ingredient) {
-    const isEl = this.selectedIngredients.find((el, index) => {
-
-      if (el.strIngredient1 === ingredient.strIngredient1) {
-        this.selectedIngredients.splice(index, 1);
-        event.currentTarget.classList.remove('ingredient-el--selected');
-        return el.strIngredient1 === ingredient.strIngredient1;
-      }
-    });
-
-    if (!isEl) {
-      this.selectedIngredients.push(ingredient);
-      event.currentTarget.classList.add('ingredient-el--selected');
+    if (this.selectedIngredient === ingredient.strIngredient1) {
+      this.selectedIngredient = '';
+      this.onGetCocktails([]);
+    } else  {
+      this.selectedIngredient = ingredient.strIngredient1;
+      this.cocktailsService.getDrinksByIngredient(ingredient.strIngredient1)
+        .subscribe(cocktails => {
+          this.onGetCocktails(cocktails);
+        });
     }
+  }
+
+  onGetCocktails (data) {
+    this.cocktails.emit(data);
   }
 }

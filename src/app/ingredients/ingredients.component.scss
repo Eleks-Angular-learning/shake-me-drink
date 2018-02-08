@@ -1,10 +1,12 @@
 .ingredients-wrap {
-  height: 430px;
+  height: 370px;
   overflow-y: auto;
   margin: 30px 0;
 }
 
 .ingredient {
+  padding: 5px;
+
   &-el {
     color: #fff;
     text-align: center;

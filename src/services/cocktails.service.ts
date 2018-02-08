@@ -23,4 +23,9 @@ export class CocktailsService {
     const response = this.http.get(`http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
     return response.pipe(pluck('drinks'));
   }
+
+  getDrinksByIngredient (ingredients): Observable<CocktailDetails> {
+    const response = this.http.get(`http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredients}`);
+    return response.pipe(pluck('drinks'));
+  }
 }
