@@ -13,17 +13,19 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MakeCocktailComponent } from './make-cocktail/make-cocktail.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { ResultsListComponent } from './results-list/results-list.component';
-import {CocktailsService} from '../services/cocktails.service';
+import { CocktailsService } from '../services/cocktails.service';
 import { VideoBackgroundComponent } from './video-background/video-background.component';
 import { LoaderComponent } from './loader/loader.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 
-import {LoginService} from '../services/login.service';
-import {LoaderService} from '../services/loader.service';
-import {AuthGuardService} from '../services/auth-guard.service';
-import {AngularFireModule} from 'angularfire2';
-import {environment} from '../environments/environment';
-import {AngularFireAuthModule} from 'angularfire2/auth';
+import { LoginService } from '../services/login.service';
+import { LoaderService } from '../services/loader.service';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
 
 @NgModule({
@@ -41,6 +43,7 @@ import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
     VideoBackgroundComponent,
     LoaderComponent,
     PageNotFoundComponent,
+    IngredientsComponent,
     CocktailPageComponent
   ],
   imports: [
@@ -48,6 +51,7 @@ import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    RadioButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     FormsModule

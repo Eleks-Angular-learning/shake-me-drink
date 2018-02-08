@@ -6,3 +6,19 @@ html, body {
 .hidden {
   display: none;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ccc;
+  background: rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+}
