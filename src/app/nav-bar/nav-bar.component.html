@@ -1,4 +1,8 @@
   <ul class="nav nav-menu">
+    <li class="menu-item">
+      <img [src]="user.photoURL" alt="" class="media-object">
+      <p class="menu-item-description">{{user.displayName}}</p>
+    </li>
     <li class="menu-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <span class="glyphicon glyphicon-home"></span>
       <p class="menu-item-description">Home</p>
@@ -10,5 +14,9 @@
     <li class="menu-item" routerLinkActive="active" routerLink="/make-cocktail">
       <span class="glyphicon glyphicon-glass"></span>
       <p class="menu-item-description">Make Cocktail</p>
+    </li>
+    <li class="menu-item" (click)="logout()">
+      <span class="glyphicon glyphicon-log-out"></span>
+      <p class="menu-item-description">Logout</p>
     </li>
   </ul>

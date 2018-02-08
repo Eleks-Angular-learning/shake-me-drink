@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
 import { CocktailsList } from '../app.models';
-import {Subscription} from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-search-page',
@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class SearchPageComponent implements OnInit, OnDestroy {
   cocktailsList: CocktailsList = [];
   filteredCocktailsList: CocktailsList = [];
+  filteredByIngredientCocktails: CocktailsList = [];
   cocktailsSubscription: Subscription;
   constructor(private cocktailsService: CocktailsService) { }
 
@@ -29,6 +30,22 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   onFilterChange (filter: string) {
-    this.filteredCocktailsList = this.cocktailsList.filter(cocktail => cocktail['strDrink'].match(new RegExp(filter, 'gi')));
+    this.filteredCocktailsList = this.filterData(this.cocktailsList, filter);
+    if (this.filteredByIngredientCocktails.length) {
+      this.filteredCocktailsList = this.filterData(this.filteredByIngredientCocktails, filter);
+    }
+  }
+
+  filterData (list, filter) {
+    return list.filter(cocktail => cocktail['strDrink'].match(new RegExp(filter, 'gi')));
+  }
+
+  onGetCocktails (data) {
+    if (data.length) {
+      this.filteredByIngredientCocktails = data;
+    } else {
+      this.filteredByIngredientCocktails = this.cocktailsList;
+    }
+    this.filteredCocktailsList = this.filteredByIngredientCocktails;
   }
 }

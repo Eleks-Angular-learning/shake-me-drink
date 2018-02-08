@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
 
 @Component({
@@ -9,10 +9,20 @@ import { CocktailsService } from '../../services/cocktails.service';
 })
 export class SearchComponent {
   @Output() onFilter = new EventEmitter();
+  @Output() cocktails = new EventEmitter();
 
+  radioVal: String = 'category';
   filterValue: String = '';
 
   filterChanged () {
     this.onFilter.emit(this.filterValue);
+  }
+
+  onGetCocktails (data) {
+    this.cocktails.emit(data);
+  }
+
+  onChange () {
+    this.onGetCocktails([]);
   }
 }

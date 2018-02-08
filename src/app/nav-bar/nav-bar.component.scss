@@ -4,6 +4,7 @@
   background-color: rgba(0, 0, 0, .9);
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .menu-item {
   color: #fff;;
@@ -22,6 +23,7 @@
   .menu-item-description {
     margin-left: 20px;
     white-space: nowrap;
+    text-align: center;
   }
 
   &.active {
@@ -32,6 +34,26 @@
   }
 }
 
+.media-object {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (max-width:1200px) {
+  .nav-menu {
+    align-items: baseline;
+  }
+  .menu-item {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 10px;
+    .menu-item-description {
+      margin-left: 0;
+      white-space: pre-wrap;
+    }
+  }
+}
 @media screen and (max-width: 800px) {
   .menu-item-description {
     display: none;
