@@ -4,6 +4,24 @@
     <div class="cocktail-image" [ngStyle]="{backgroundImage: image}">
     </div>
     <div class="cocktail-information">
+      <table class="ingredients">
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Ingredients:</td>
+          <td [textContent]="ingredients"></td>
+        </tr>
+      </table>
       <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
     </div>
   </div>
