@@ -1,22 +1,28 @@
-import { HttpClient  } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import * as firebase from 'firebase';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Injectable()
 export class LoginService {
-  constructor (private http: HttpClient) {}
+  user = {
+    displayName: 'Not authorized'
+  };
 
-  loggedIn = false;
+  constructor (public afAuth: AngularFireAuth) {}
 
   isAuthenticated () {
-    return this.loggedIn;
+    return sessionStorage.getItem('loginData');
   }
 
-  login (data) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        this.loggedIn = true;
-        resolve(data);
-      }, 2000);
-    });
+  login () {
+    return new Promise(resolve =>
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(data => {
+          const {user} = data;
+          this.user.displayName = user.displayName;
+          sessionStorage.setItem('loginData', user.uid);
+          return resolve(user);
+        })
+    );
   }
 }

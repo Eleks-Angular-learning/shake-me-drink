@@ -23,6 +23,10 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { LoginService } from '../services/login.service';
 import { LoaderService } from '../services/loader.service';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +43,18 @@ import { AuthGuardService } from '../services/auth-guard.service';
     VideoBackgroundComponent,
     LoaderComponent,
     PageNotFoundComponent,
-    IngredientsComponent
+    IngredientsComponent,
+    CocktailPageComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RadioButtonModule
+    RadioButtonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    FormsModule
   ],
   providers: [CocktailsService, LoginService, LoaderService, AuthGuardService],
   bootstrap: [AppComponent]

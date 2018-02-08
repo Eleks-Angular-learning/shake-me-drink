@@ -1,0 +1,27 @@
+.cocktail-page {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-around;
+  font-family: "Architects Daughter", cursive;
+  .cocktail-image {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center center;
+  }
+  .cocktail-information {
+    display: flex;
+    max-width: 50%;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    .title {
+      font-size: 3em;
+    }
+    .instructions {
+      font-size: 2em;
+    }
+  }
+}
