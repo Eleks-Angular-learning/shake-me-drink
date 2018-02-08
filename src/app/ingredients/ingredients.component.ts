@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
-
+import { SelectedIngredients } from '../app.models';
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
@@ -8,7 +8,8 @@ import { CocktailsService } from '../../services/cocktails.service';
 })
 export class IngredientsComponent implements OnInit {
   ingredients: any;
-  isClassVisible: boolean = false;
+  selectedIngredients: SelectedIngredients = [];
+  isSelected: boolean = false;
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit() {
@@ -16,8 +17,20 @@ export class IngredientsComponent implements OnInit {
       .subscribe(ingredients => this.ingredients = ingredients);
   }
 
-  onIngredientSelect () {
-    this.isClassVisible = !this.isClassVisible;
-  }
+  toggleIngredient (event, ingredient) {
+    console.log(event.currentTarget.classList)
+    const isEl = this.selectedIngredients.find((el, index) => {
 
+      if (el.strIngredient1 === ingredient.strIngredient1) {
+        this.selectedIngredients.splice(index, 1);
+        event.currentTarget.classList.remove('ingredient-el--selected');
+        return el.strIngredient1 === ingredient.strIngredient1;
+      }
+    });
+
+    if (!isEl) {
+      this.selectedIngredients.push(ingredient);
+      event.currentTarget.classList.add('ingredient-el--selected');
+    }
+  }
 }

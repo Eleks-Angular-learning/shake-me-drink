@@ -1,5 +1,10 @@
 <div class="ui-g ingredients-wrap">
-    <div class="ui-g-4 ui-md-3 ui-lg-2 ingredient-el" [class.ingredient-el--selected]="clicked === true" *ngFor="let ingredient of ingredients" (click)="clicked = true">
+    <div
+      class="ui-g-4 ui-md-3 ui-lg-2 ingredient-el"
+      *ngFor="let ingredient of ingredients"
+      [class.DUDA]="isSelected"
+      (click)="toggleIngredient($event, ingredient)">
+
       <img class="ingredient-img" [src]="'http://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient1 +'-Medium.png'">
       <span>{{ingredient.strIngredient1}}</span>
     </div>
