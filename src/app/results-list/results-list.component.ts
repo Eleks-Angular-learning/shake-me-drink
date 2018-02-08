@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-results-list',
@@ -7,4 +8,10 @@ import {Component, Input} from '@angular/core';
 })
 export class ResultsListComponent {
   @Input() cocktails: Array<Object> = [];
+
+  constructor (private router: Router) {}
+
+  onCocktailClick (id) {
+    this.router.navigate(['/cocktail', id]);
+  }
 }

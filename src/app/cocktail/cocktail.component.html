@@ -1,4 +1,4 @@
-<div class="cocktail" [ngStyle]="{'background-image': imageUrl}">
+<div class="cocktail" [ngStyle]="{'background-image': imageUrl}" (click)="onCocktailCkick()">
   <div class="cocktail-name">
     <p [textContent]="name"></p>
   </div>
