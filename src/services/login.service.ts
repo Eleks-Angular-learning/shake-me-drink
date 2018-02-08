@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FirebaseService } from './firebase.service';
@@ -14,7 +14,7 @@ export class LoginService {
   private _userDataChanges: BehaviorSubject<any> = new BehaviorSubject<any>(USER_INIT);
 
   get userData(): any {
-    // Returns cloned row data. Should avoid mutation by object's recreance
+    // Clone of row User's data with spread operator.
     return {...this._userDataChanges.getValue()};
   }
 
@@ -23,12 +23,12 @@ export class LoginService {
   }
 
   get userDataChanges(): Observable<any> {
-    // Returns Observable stream
-    return this._userDataChanges;
+    return this._userDataChanges; // Observable stream
   }
 
   constructor (
-    private firebase: FirebaseService
+    private firebase: FirebaseService,
+    private zone: NgZone
   ) {}
 
   isAuthenticated (): boolean {
@@ -36,20 +36,36 @@ export class LoginService {
   }
 
   login (): Promise<any> {
+    // TODO: Emit loading event
     const fbProvider = this.firebase
       .getFacebookAuthProvider()
       .setCustomParameters({'display': 'popup'});
 
+    const onSuccess = response => {
+      const {user} = response;
+      this.loggedIn = true;
+      this.userData = user;
+      // TODO: Emit loading event
+    };
+
+    const onError = error => ({error: error.message});
+
+    return this.resolvePromiseWithAngularZone(
+      () => this.firebase.signInWithPopup(fbProvider),
+      onSuccess,
+      onError
+    );
+  }
+
+  resolvePromiseWithAngularZone(promiseFunc, onSuccessFn, onErrorFn = value => value): Promise<any> {
     return new Promise((resolve, reject) => {
-      return this.firebase.signInWithPopup(fbProvider)
-        .then(response => response.user)
-        .then(user => {
-          this.loggedIn = true;
-          this.userData = user;
-          // Keep setTimeout in order to finish all tarted function invocations
-          return setTimeout(() => resolve(this.userData), 0);
-        })
-        .catch(error => reject({error: error.message}));
-      });
+      return this.zone.runOutsideAngular(() => {
+        return promiseFunc().then(result =>
+            this.zone.run(() => resolve(onSuccessFn(result)))
+          )
+          .catch(error => reject(onErrorFn(error)));
+        }
+      );
+    });
   }
 }
