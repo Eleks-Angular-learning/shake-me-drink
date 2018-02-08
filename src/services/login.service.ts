@@ -12,7 +12,7 @@ export class LoginService {
   constructor (public afAuth: AngularFireAuth) {}
 
   isAuthenticated () {
-    return this.loggedIn;
+    return sessionStorage.getItem('loginData');
   }
 
   login () {
@@ -21,6 +21,7 @@ export class LoginService {
         .then(data => {
           const {user} = data;
           this.user.displayName = user.displayName;
+          sessionStorage.setItem('loginData', user);
           return resolve(user);
         })
     );

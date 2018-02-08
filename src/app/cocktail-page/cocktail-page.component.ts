@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import { CocktailsService } from '../../services/cocktails.service';
+import {CocktailDetails} from '../app.models';
+import {Subscription} from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-cocktail-page',
+  templateUrl: './cocktail-page.component.html',
+  styleUrls: ['./cocktail-page.component.scss']
+})
+export class CocktailPageComponent implements OnInit {
+  cocktail: CocktailDetails = null;
+  cocktailSubscription: Subscription;
+
+  constructor(private route: ActivatedRoute, private cocktailsSvc: CocktailsService) { }
+
+  ngOnInit() {
+    this.route.params.subscribe(event => {
+      const cocktailSource$ = this.cocktailsSvc.getCocktailById(event.id);
+      this.cocktailSubscription = cocktailSource$.subscribe(cocktail => {
+        this.cocktail = cocktail[0];
+      });
+    });
+
+  }
+
+  get image () {
+    if (this.cocktail) {
+      return `url(//${this.cocktail.strDrinkThumb})`;
+    }
+  }
+}

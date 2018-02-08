@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { SearchComponent } from './search/search.component';
 import {MainPageComponent} from './main-page/main-page.component';
 import {MakeCocktailComponent} from './make-cocktail/make-cocktail.component';
+import {SearchPageComponent} from './search-page/search-page.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuardService} from '../services/auth-guard.service';
+import {CocktailPageComponent} from './cocktail-page/cocktail-page.component';
 
 const routes: Routes = [
   {
@@ -13,8 +14,9 @@ const routes: Routes = [
     component: MainPageComponent,
     // canActivate: [AuthGuardService],
     children: [
-      {path: 'search', component: SearchComponent},
-      {path: 'make-cocktail', component: MakeCocktailComponent}
+      {path: 'search', component: SearchPageComponent},
+      {path: 'make-cocktail', component: MakeCocktailComponent},
+      {path: 'cocktail', children: [{path: ':id', component: CocktailPageComponent}]}
     ]
   },
   {

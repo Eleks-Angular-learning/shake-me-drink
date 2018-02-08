@@ -1,19 +1,18 @@
-<div>
-  <div style="font-size: 26px; color: white;">
-    User {{user | json}}
-  </div>
-  <ul class="nav-menu">
-    <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      Home
+  <ul class="nav nav-menu">
+    <div style="font-size: 26px; color: white;">
+      User {{user | json}}
+    </div>
+
+    <li class="menu-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <span class="glyphicon glyphicon-home"></span>
+      <p class="menu-item-description">Home</p>
     </li>
-    <li routerLinkActive="active" routerLink="/search">
-      Search your favorite Cocktail
+    <li class="menu-item" routerLinkActive="active" routerLink="/search">
+      <span class="glyphicon glyphicon-search"></span>
+      <p class="menu-item-description">Search Cocktail</p>
     </li>
-    <li routerLinkActive="active" routerLink="/make-cocktail">
-      Make Cocktail
-    </li>
-    <li routerLinkActive="active" routerLink="/login">
-      Login
+    <li class="menu-item" routerLinkActive="active" routerLink="/make-cocktail">
+      <span class="glyphicon glyphicon-glass"></span>
+      <p class="menu-item-description">Make Cocktail</p>
     </li>
   </ul>
-</div>

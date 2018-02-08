@@ -1,0 +1,24 @@
+.cocktail {
+  display: flex;
+  align-items: flex-end;
+  width: 260px;
+  height: 350px;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 10px;
+  .cocktail-name {
+    display: block;
+    text-align: center;
+    height: 30%;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Architects Daughter", cursive;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    transition: height 0.2s;
+  }
+}
+
