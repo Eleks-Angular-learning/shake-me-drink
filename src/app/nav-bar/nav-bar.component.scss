@@ -21,7 +21,7 @@
     overflow: hidden;
     white-space: nowrap;
     &:hover {
-      color: #ff9561;
+      color: #f5651e;
     }
     &-description {
       margin: 0 0 0 20px;
@@ -29,13 +29,8 @@
       text-align: center;
     }
   }
-
-
-  &.active {
+  .active {
     color: #f5651e;
-    &:hover {
-      color: #f5651e;
-    }
   }
 }
 
