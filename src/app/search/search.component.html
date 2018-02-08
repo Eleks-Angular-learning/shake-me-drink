@@ -1,8 +1,12 @@
 <div class="container">
   <div class="header">Find your cocktail</div>
   <div class="ui-g search-selector">
-    <div class="ui-g-6 search-selector__block"><p-radioButton value="category" label="By category" [(ngModel)]="radioVal" inputId="opt3"></p-radioButton></div>
-    <div class="ui-g-6 search-selector__block"><p-radioButton value="ingredient" label="By Ingrediends" [(ngModel)]="radioVal" inputId="opt1"></p-radioButton></div>
+    <div class="ui-g-6 search-selector__block">
+      <p-radioButton value="category" label="By category" [(ngModel)]="radioVal" inputId="opt3"></p-radioButton>
+    </div>
+    <div class="ui-g-6 search-selector__block">
+      <p-radioButton value="ingredient" label="By Ingrediends" [(ngModel)]="radioVal" inputId="opt1"></p-radioButton>
+    </div>
   </div>
   <app-ingredients *ngIf="radioVal == 'ingredient'"></app-ingredients>
   <div class="ui-g">
