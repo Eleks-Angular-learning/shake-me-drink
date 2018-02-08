@@ -1,23 +1,14 @@
-<div class="side-menu" [ngClass]="{'thin': !isWide}">
-  <p class="hamburger-area">
-    <span
-      class="glyphicon"
-      [ngClass]="{'glyphicon-menu-hamburger': !isWide, 'glyphicon-remove': isWide}"
-      (click)="toggleWideView()"
-    ></span>
-  </p>
-  <ul class="nav nav-pills nav-stacked nav-menu">
+  <ul class="nav nav-menu">
     <li class="menu-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <span class="glyphicon glyphicon-home"></span>
-      <p>Home</p>
+      <p class="menu-item-description">Home</p>
     </li>
     <li class="menu-item" routerLinkActive="active" routerLink="/search">
       <span class="glyphicon glyphicon-search"></span>
-      <p>Search</p>
+      <p class="menu-item-description">Search Cocktail</p>
     </li>
     <li class="menu-item" routerLinkActive="active" routerLink="/make-cocktail">
       <span class="glyphicon glyphicon-glass"></span>
-      <p>Make Cocktail</p>
+      <p class="menu-item-description">Make Cocktail</p>
     </li>
   </ul>
-</div>
