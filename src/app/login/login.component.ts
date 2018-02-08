@@ -18,10 +18,8 @@ export class LoginComponent implements OnInit {
   // };
 
   login () {
-    // TODO: probably bug here!!!
-    this.loginService.login();
-      // .then(() => this.redirectToMainPage());
-    this.redirectToMainPage();
+    this.loginService.login()
+      .then(() => this.redirectToMainPage());
   }
 
   redirectToMainPage () {

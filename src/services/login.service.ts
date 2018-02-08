@@ -16,10 +16,13 @@ export class LoginService {
   }
 
   login () {
-    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(data => {
-        const {user} = data;
-        this.user.displayName = user.displayName;
-      });
+    return new Promise(resolve =>
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(data => {
+          const {user} = data;
+          this.user.displayName = user.displayName;
+          return resolve(user);
+        })
+    );
   }
 }
