@@ -14,6 +14,10 @@ export class LoginService {
     return sessionStorage.getItem('loginData');
   }
 
+  getUserData () {
+    return this.afAuth.auth.currentUser;
+  }
+
   login () {
     return new Promise(resolve =>
       this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
@@ -24,5 +28,11 @@ export class LoginService {
           return resolve(user);
         })
     );
+  }
+
+  logout () {
+    return this.afAuth.auth.signOut().then(() => {
+      sessionStorage.removeItem('loginData');
+    });
   }
 }
