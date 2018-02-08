@@ -10,15 +10,20 @@ export class IngredientsComponent implements OnInit {
   ingredients: any;
   selectedIngredients: SelectedIngredients = [];
   isSelected: boolean = false;
+  isLoading: boolean = false;
+
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.cocktailsService.getIngredients()
-      .subscribe(ingredients => this.ingredients = ingredients);
+      .subscribe(ingredients => {
+        this.ingredients = ingredients;
+        this.isLoading = false;
+      });
   }
 
   toggleIngredient (event, ingredient) {
-    console.log(event.currentTarget.classList)
     const isEl = this.selectedIngredients.find((el, index) => {
 
       if (el.strIngredient1 === ingredient.strIngredient1) {

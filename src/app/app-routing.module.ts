@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainPageComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {path: 'search', component: SearchPageComponent},
       {path: 'make-cocktail', component: MakeCocktailComponent}
