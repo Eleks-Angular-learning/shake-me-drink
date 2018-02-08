@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { CocktailItem } from '../app.models';
 
 @Component({
@@ -8,6 +8,7 @@ import { CocktailItem } from '../app.models';
 })
 export class CocktailComponent {
   @Input() cocktail: CocktailItem;
+  @Output() cocktailId = new EventEmitter();
 
   get name (): string {
     return this.cocktail.strDrink;
@@ -15,5 +16,9 @@ export class CocktailComponent {
 
   get imageUrl (): string {
     return `url(//${this.cocktail.strDrinkThumb})`;
+  }
+
+  onCocktailCkick () {
+    this.cocktailId.emit(this.cocktail.idDrink);
   }
 }
