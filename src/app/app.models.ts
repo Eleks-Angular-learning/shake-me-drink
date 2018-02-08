@@ -4,10 +4,7 @@ export interface CocktailItem {
   strDrinkThumb: string;
 }
 
-export interface CocktailDetails {
-  idDrink: string;
-  strDrink: string;
-  strDrinkThumb: string;
+export interface CocktailDetails extends CocktailItem {
   strInstructions: string;
 }
 
