@@ -21,6 +21,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginService} from '../services/login.service';
 import {LoaderService} from '../services/loader.service';
 import {AuthGuardService} from '../services/auth-guard.service';
+import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AuthGuardService} from '../services/auth-guard.service';
     MakeCocktailComponent,
     VideoBackgroundComponent,
     LoaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CocktailPageComponent
   ],
   imports: [
     AppRoutingModule,
