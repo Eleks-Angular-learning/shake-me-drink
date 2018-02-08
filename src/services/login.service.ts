@@ -4,7 +4,6 @@ import {AngularFireAuth} from 'angularfire2/auth';
 
 @Injectable()
 export class LoginService {
-  loggedIn = false;
   user = {
     displayName: 'Not authorized'
   };
@@ -21,7 +20,7 @@ export class LoginService {
         .then(data => {
           const {user} = data;
           this.user.displayName = user.displayName;
-          sessionStorage.setItem('loginData', user);
+          sessionStorage.setItem('loginData', user.uid);
           return resolve(user);
         })
     );
