@@ -5,7 +5,10 @@
       class="ingredient-el"
       [class.ingredient-el--selected] = "ingredient.strIngredient1 === selectedIngredient"
       (click)="toggleIngredient($event, ingredient)">
-      <img class="ingredient-img" [src]="'http://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient1 +'-Medium.png'">
+      <img
+        class="ingredient-img"
+        [src]="'http://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient1 +'-Medium.png'"
+        onError="this.src='assets/default-bottle.png'">
       <span>{{ingredient.strIngredient1}}</span>
     </div>
   </div>

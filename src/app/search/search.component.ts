@@ -21,4 +21,8 @@ export class SearchComponent {
   onGetCocktails (data) {
     this.cocktails.emit(data);
   }
+
+  onChange () {
+    this.onGetCocktails([]);
+  }
 }
