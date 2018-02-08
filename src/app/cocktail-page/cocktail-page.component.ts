@@ -32,13 +32,10 @@ export class CocktailPageComponent implements OnInit {
   }
 
   get ingredients () {
-    const ingredients: Array<CocktailDetails> = [];
-    if (this.cocktail) {
-      Object
-        .keys(this.cocktail)
-        .filter(key => key.includes('strIngredient'))
-        .map(key => this.cocktail[key] ? ingredients.push(this.cocktail[key]) : null);
-      return ingredients.join(', ');
-    }
+    return Object.keys(this.cocktail || {})
+      .filter(key => key.includes('strIngredient'))
+      .map(key => this.cocktail[key])
+      .filter(item => item)
+      .join(', ');
   }
 }
