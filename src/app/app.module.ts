@@ -21,6 +21,9 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginService} from '../services/login.service';
 import {LoaderService} from '../services/loader.service';
 import {AuthGuardService} from '../services/auth-guard.service';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
 
 @NgModule({
@@ -44,6 +47,9 @@ import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     FormsModule
   ],
   providers: [CocktailsService, LoginService, LoaderService, AuthGuardService],
