@@ -1,27 +1,68 @@
-.cocktail-page {
+.cocktail {
   display: flex;
+  flex-direction: column;
   width: 90%;
   margin: 0 auto;
   justify-content: space-around;
   font-family: "Architects Daughter", cursive;
-  .cocktail-image {
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center center;
+  color: #fff;
+  &-title {
+    margin: 70px 0;
+    font-size: 72px;
+    text-align: center;
   }
-  .cocktail-information {
+  &-details {
+    display: flex;
+    justify-content: space-around;
+    .cocktail-image {
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  &-information {
     display: flex;
     max-width: 50%;
     flex-direction: column;
     align-items: center;
-    color: #fff;
-    .title {
-      font-size: 3em;
-    }
     .instructions {
       font-size: 2em;
+    }
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+  .cocktail-title {
+    font-size: 48px;
+  }
+  .cocktail-details {
+    .cocktail-image {
+      width: 400px;
+      height: 400px;
+    }
+    .cocktail-information {
+      .instructions {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cocktail-details {
+    flex-direction: column;
+    align-items: center;
+    .cocktail-image {
+      width: 250px;
+      height: 250px;
+    }
+    .cocktail-information {
+      margin-top: 50px;
+      max-width: 100%;
     }
   }
 }

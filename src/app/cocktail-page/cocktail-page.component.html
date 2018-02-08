@@ -1,8 +1,10 @@
-<div class="cocktail-page">
-  <div class="cocktail-image" [ngStyle]="{backgroundImage: image}">
-  </div>
-  <div class="cocktail-information">
-    <h1 class="title" [textContent]="cocktail?.strDrink"></h1>
-    <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
+<div class="cocktail">
+  <h1 class="cocktail-title" [textContent]="cocktail?.strDrink"></h1>
+  <div class="cocktail-details">
+    <div class="cocktail-image" [ngStyle]="{backgroundImage: image}">
+    </div>
+    <div class="cocktail-information">
+      <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
+    </div>
   </div>
 </div>
