@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit () {
-    this.user = this.loginService.user;
+    this.user = this.loginService.getUserData();
   }
 
   logout () {
