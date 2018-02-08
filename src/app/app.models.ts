@@ -6,6 +6,9 @@ export interface CocktailItem {
 
 export interface CocktailDetails extends CocktailItem {
   strInstructions: string;
+  strAlcoholic: string;
+  strCategory: string;
+  strGlass: string;
 }
 
 export interface CocktailsList extends Array<any> {
