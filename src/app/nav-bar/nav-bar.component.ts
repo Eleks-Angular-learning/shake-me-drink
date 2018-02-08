@@ -9,14 +9,12 @@ import {Router} from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   user: any = {};
-  isWide = true;
 
   constructor(private loginService: LoginService,
               private router: Router) {}
 
   ngOnInit () {
-    this.user = this.loginService.user;
-    console.error('this.user', this.user);
+    this.user = this.loginService.getUserData();
   }
 
   logout () {
