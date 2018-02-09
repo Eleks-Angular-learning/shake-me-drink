@@ -37,7 +37,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   filterData (list, filter) {
-    return list.filter(cocktail => cocktail['strDrink'].match(new RegExp(filter, 'gi')));
+    const toLowerCase = str => String(str).toLowerCase();
+    return list.filter(cocktail => toLowerCase(cocktail['strDrink']).includes(toLowerCase(filter)));
   }
 
   onGetCocktails (data) {
