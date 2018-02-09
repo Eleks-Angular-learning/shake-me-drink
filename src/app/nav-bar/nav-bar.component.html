@@ -1,5 +1,5 @@
   <ul class="nav nav-menu">
-    <li class="menu-item">
+    <li class="menu-item user-data">
       <img [src]="user.photoURL" alt="" class="media-object">
       <p class="menu-item-description">{{user.displayName}}</p>
     </li>
@@ -7,11 +7,11 @@
       <span class="glyphicon glyphicon-home"></span>
       <p class="menu-item-description">Home</p>
     </li>
-    <li class="menu-item" routerLinkActive="active" routerLink="/search">
+    <li class="menu-item" routerLink="/search" routerLinkActive="active">
       <span class="glyphicon glyphicon-search"></span>
       <p class="menu-item-description">Search Cocktail</p>
     </li>
-    <li class="menu-item" routerLinkActive="active" routerLink="/make-cocktail">
+    <li class="menu-item" routerLink="/make-cocktail" routerLinkActive="active">
       <span class="glyphicon glyphicon-glass"></span>
       <p class="menu-item-description">Make Cocktail</p>
     </li>

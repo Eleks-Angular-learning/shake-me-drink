@@ -4,24 +4,29 @@
     <div class="cocktail-image" [ngStyle]="{backgroundImage: image}">
     </div>
     <div class="cocktail-information">
-      <table class="ingredients">
-        <tr>
-          <td>Alcohol:</td>
-          <td [textContent]="cocktail?.strAlcoholic"></td>
-        </tr>
-        <tr>
-          <td>Category:</td>
-          <td [textContent]="cocktail?.strCategory"></td>
-        </tr>
-        <tr>
-          <td>Glass:</td>
-          <td [textContent]="cocktail?.strGlass"></td>
-        </tr>
-        <tr>
-          <td>Ingredients:</td>
-          <td [textContent]="ingredients"></td>
-        </tr>
-      </table>
+      <div class="cocktail-data">
+        <div class="data-row">
+          <p class="title">Alcohol:</p>
+          <p class="value" [textContent]="cocktail?.strAlcoholic"></p>
+        </div>
+        <div class="data-row">
+          <p class="title">Category:</p>
+          <p class="value" [textContent]="cocktail?.strCategory"></p>
+        </div>
+        <div class="data-row">
+          <p class="title">Glass:</p>
+          <p class="value" [textContent]="cocktail?.strGlass"></p>
+        </div>
+        <div class="data-row ingredients">
+          <p class="title">Ingredients:</p>
+          <div class="ingredients-list">
+            <span class="ingredient" *ngFor="let i of ingredients">
+              <img [src]="getIngredientImg(i)" onError="this.src='assets/default-bottle.png'">
+              <span [textContent]="i"></span>
+            </span>
+          </div>
+        </div>
+      </div>
       <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
     </div>
   </div>
