@@ -27,6 +27,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
+import { SortPipe } from '../pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
     LoaderComponent,
     PageNotFoundComponent,
     IngredientsComponent,
-    CocktailPageComponent
+    CocktailPageComponent,
+    SortPipe
   ],
   imports: [
     AppRoutingModule,

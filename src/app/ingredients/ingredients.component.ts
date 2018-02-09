@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
-import { SelectedIngredients } from '../app.models';
+import { IngredientItem } from '../app.models';
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
@@ -9,16 +9,16 @@ import { SelectedIngredients } from '../app.models';
 export class IngredientsComponent implements OnInit {
   @Output() cocktails = new EventEmitter();
 
-  ingredients: any;
-  selectedIngredient: string = '';
-  isLoading: boolean = false;
+  ingredients: Array<IngredientItem>;
+  selectedIngredient = '';
+  isLoading = false;
 
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit() {
     this.isLoading = true;
     this.cocktailsService.getIngredients()
-      .subscribe(ingredients => {
+      .subscribe((ingredients: Array<IngredientItem>) => {
         this.ingredients = ingredients;
         this.isLoading = false;
       });
