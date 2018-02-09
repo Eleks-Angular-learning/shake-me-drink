@@ -4,7 +4,7 @@
   width: 90%;
   margin: 0 auto;
   justify-content: space-around;
-  font-family: "Architects Daughter", cursive;
+  font-family: 'Architects Daughter', cursive;
   color: #fff;
   padding-top: 20px;
   &-title {
@@ -17,8 +17,8 @@
     justify-content: space-around;
     align-items: center;
     .cocktail-image {
-      width: 500px;
-      height: 500px;
+      width: 600px;
+      height: 600px;
       border: 5px solid #fff;
       border-radius: 50%;
       background-size: cover;
@@ -31,16 +31,46 @@
     flex-direction: column;
     justify-content: space-around;
     max-width: 50%;
-    .ingredients {
+    .cocktail-data {
       font-size: 32px;
-      tr {
+      .data-row {
+        display: flex;
         margin: 20px 10px;
         :first-child {
           font-weight: bold;
-          color: #e8e8e8;
+          width: 160px;
         }
-        td {
-          padding: 10px;
+        &:nth-child(1) {
+          color: #a3fbf9;
+        }
+        &:nth-child(2) {
+          color: #eea2e5;
+        }
+        &:nth-child(3) {
+          color: #fdd564;
+        }
+      }
+      .ingredients {
+        display: flex;
+        flex-direction: column;
+        color: #76f099;
+        .ingredients-list {
+          display: flex;
+          width: 500px;
+          overflow-x: auto;
+          .ingredient {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            img {
+              width: 100px;
+              height: 100px;
+            }
+            span {
+              text-align: center;
+              font-size: 14px;
+            }
+          }
         }
       }
     }
@@ -52,7 +82,7 @@
 
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1250px) {
   .cocktail-title {
     font-size: 48px;
     margin-top: 100px;
@@ -64,8 +94,13 @@
     }
     .cocktail-information {
       font-size: 24px;
-      .ingredients {
+      .cocktail-data {
         font-size: 26px;
+        .ingredients {
+          .ingredients-list {
+            width: 400px;
+          }
+        }
       }
       .instructions {
         font-size: 20px;
@@ -85,6 +120,22 @@
     .cocktail-information {
       margin-top: 50px;
       max-width: 100%;
+      .cocktail-data {
+        .ingredients-list {
+          width: 250px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cocktail-information {
+    .cocktail-data {
+      overflow: hidden;
+      .ingredients-list {
+        width: 350px !important;
+      }
     }
   }
 }
