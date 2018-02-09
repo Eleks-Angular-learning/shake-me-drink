@@ -19,7 +19,12 @@
         </tr>
         <tr>
           <td>Ingredients:</td>
-          <td [textContent]="ingredients"></td>
+          <td class="ingredients-list">
+            <span class="ingredient" *ngFor="let i of ingredients">
+              <img [src]="getIngredientImg(i)" onError="this.src='assets/default-bottle.png'">
+              <span [textContent]="i"></span>
+            </span>
+          </td>
         </tr>
       </table>
       <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
