@@ -37,8 +37,20 @@
         margin: 20px 10px;
         :first-child {
           font-weight: bold;
-          color: #e8e8e8;
         }
+        &:nth-child(1) {
+          color: #a3fbf9;
+        }
+        &:nth-child(2) {
+          color: #eea2e5;
+        }
+        &:nth-child(3) {
+          color: #fdd564;
+        }
+        &:nth-child(4) {
+          color: #76f099;
+        }
+
         td {
           padding: 10px;
         }
