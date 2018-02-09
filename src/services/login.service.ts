@@ -14,9 +14,20 @@ export class LoginService {
     return this.afAuth.auth.currentUser || JSON.parse(sessionStorage.getItem('loginData'));
   }
 
-  login () {
+  getAuthProvider (type: string) {
+    switch (type) {
+      case 'facebook':
+        return new firebase.auth.FacebookAuthProvider();
+      case 'github':
+        return new firebase.auth.GithubAuthProvider();
+      default:
+        return new firebase.auth.FacebookAuthProvider();
+    }
+  }
+
+  login (type: string) {
     return new Promise(resolve =>
-      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      this.afAuth.auth.signInWithPopup(this.getAuthProvider(type))
         .then(data => {
           const {user} = data;
           sessionStorage.setItem('loginData', JSON.stringify(user));
