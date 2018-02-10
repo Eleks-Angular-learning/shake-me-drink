@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CocktailsService} from '../../services/cocktails.service';
 import {IngredientItem} from '../app.models';
 
-const phrases = ['Are you serious?!', 'I\'m delighted with your endurance...', 'I would not drink it'];
+const phrases = ['Are you serious?!', 'Not enough for you?', 'I\'m delighted with your endurance...', 'I would not drink it'];
 
 @Component({
   selector: 'app-make-cocktail',
@@ -13,6 +13,7 @@ export class MakeCocktailComponent implements OnInit {
   allIngredients: Array<IngredientItem>;
   customIngredients: Array<IngredientItem> = [];
   warning = false;
+  shakeEnabled = false;
   warningMessage: string;
   constructor(private cocktailsService: CocktailsService) { }
 
@@ -48,11 +49,20 @@ export class MakeCocktailComponent implements OnInit {
     this.warning = false;
   }
 
+  onShake () {
+    if (this.customIngredients.length) {
+      this.shakeEnabled = true;
+      setTimeout(() => {
+        this.shakeEnabled = false;
+      }, 5000);
+    }
+  }
+
   getMotivatedMessage () {
     const getRandomInt = (min, max) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
-    return phrases[getRandomInt(0, 2)];
+    return phrases[getRandomInt(0, 3)];
   }
 
   onScroll (e) {

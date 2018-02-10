@@ -42,9 +42,17 @@
       color: #fff;
       top: 10%;
     }
-    img {
+    .glass-container {
       width: 600px;
-      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 600px;
+      img {
+        width: 600px;
+        height: auto;
+        position: absolute;
+      }
     }
     .custom-ingredients {
       position: absolute;
@@ -58,8 +66,6 @@
       }
     }
     .shake {
-      //position: absolute;
-      //bottom: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -72,17 +78,31 @@
   }
 }
 
+@keyframes spaceboots {
+  0% { -webkit-transform: translate(6px, 3px) rotate(0deg); }
+  10% { -webkit-transform: translate(-3px, -6px) rotate(-3deg); }
+  20% { -webkit-transform: translate(-9px, 0px) rotate(3deg); }
+  30% { -webkit-transform: translate(0px, 6px) rotate(0deg); }
+  40% { -webkit-transform: translate(3px, -3px) rotate(3deg); }
+  50% { -webkit-transform: translate(-3px, 6px) rotate(-3deg); }
+  60% { -webkit-transform: translate(-9px, 3px) rotate(0deg); }
+  70% { -webkit-transform: translate(6px, 3px) rotate(-3deg); }
+  80% { -webkit-transform: translate(-3px, -3px) rotate(3deg); }
+  90% { -webkit-transform: translate(6px, 6px) rotate(0deg); }
+  100% { -webkit-transform: translate(3px, -6px) rotate(-3deg); }
+}
+
+.shake-animation {
+  -webkit-animation-name: spaceboots;
+  -webkit-animation-duration: 0.8s;
+  -webkit-transform-origin:50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
   .make-cocktail-page {
-    //flex-direction: column;
     .ingredients-bar {
-      //height: 120px;
-      //width: 100%;
-      //flex-direction: row;
-      //overflow-x: auto;
-      //overflow-y: hidden;
-      //margin-top: 70px;
-      //padding-top: 10px;
       .ingredient {
         width: 150px;
         height: 100px;
@@ -101,9 +121,13 @@
       h1 {
         top: 15%;
       }
-      img {
+      .glass-container {
         width: 250px;
-        height: auto;
+        height: 250px;
+        img {
+          width: 250px;
+          height: auto;
+        }
       }
       .custom-ingredients {
         width: 300px;
@@ -120,6 +144,7 @@
 @media screen and (max-width: 500px) {
   .make-cocktail-page {
     flex-direction: column;
+    align-items: center;
     .ingredients-bar {
       height: 75px;
       width: 100%;
@@ -148,15 +173,10 @@
       }
     }
     .cocktail-glass {
-      margin: 0 auto;
       padding: 50px 20px;
       h1 {
         top: 27%;
         font-size: 1.5em;
-      }
-      img {
-        width: 250px;
-        height: auto;
       }
       .custom-ingredients {
         width: 200px;

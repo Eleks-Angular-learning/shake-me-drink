@@ -10,15 +10,19 @@
   </div>
   <div class="cocktail-glass">
     <h1 *ngIf="warning" [textContent]="warningMessage"></h1>
-    <img src="/assets/cocktail_glass.png" alt="" droppable (onDrop)="onItemDrop($event)">
-    <div class="custom-ingredients">
+    <div class="glass-container">
+      <img src="/assets/cocktail_glass.png"
+        [ngClass]="{'shake-animation': shakeEnabled}"
+        alt="" droppable (onDrop)="onItemDrop($event)">
+    </div>
+    <div class="custom-ingredients" [ngClass]="{'shake-animation': shakeEnabled}">
       <img *ngFor="let customIngredient of customIngredients"
            onError="this.src='assets/default-bottle.png'"
            [src]="getIngredientImg(customIngredient)" alt="">
     </div>
     <div class="shake">
       <button class="btn btn-default" (click)="onReset()">Reset</button>
-      <button class="btn btn-default">Shake me drink!</button>
+      <button class="btn btn-default" (click)="onShake()">Shake me drink!</button>
     </div>
   </div>
 </div>
