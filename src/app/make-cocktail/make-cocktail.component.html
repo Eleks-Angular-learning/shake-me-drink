@@ -1,3 +1,24 @@
-<p>
-  make-cocktail works!
-</p>
+<div class="make-cocktail-page">
+  <div class="ingredients-bar" id="ingredients-bar">
+    <div class="ingredient" (wheel)="onScroll($event)"
+         *ngFor="let ingredient of allIngredients | sortBy : 'strIngredient1' : 'alphabetical'"
+         (dblclick)="onDoubleClick(ingredient)"
+         draggable [dragData]="ingredient">
+      <img [src]="getIngredientImg(ingredient)" alt="" onError="this.src='assets/default-bottle.png'">
+      <p [textContent]="ingredient.strIngredient1"></p>
+    </div>
+  </div>
+  <div class="cocktail-glass">
+    <h1 *ngIf="warning" [textContent]="warningMessage"></h1>
+    <img src="/assets/cocktail_glass.png" alt="" droppable (onDrop)="onItemDrop($event)">
+    <div class="custom-ingredients">
+      <img *ngFor="let customIngredient of customIngredients"
+           onError="this.src='assets/default-bottle.png'"
+           [src]="getIngredientImg(customIngredient)" alt="">
+    </div>
+    <div class="shake">
+      <button class="btn btn-default" (click)="onReset()">Reset</button>
+      <button class="btn btn-default">Shake me drink!</button>
+    </div>
+  </div>
+</div>
