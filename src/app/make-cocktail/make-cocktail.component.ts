@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {CocktailsService} from '../../services/cocktails.service';
-import {IngredientItem} from '../app.models';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CocktailsService } from '../../services/cocktails.service';
+import { IngredientItem } from '../app.models';
+import { Subscription } from 'rxjs/Subscription';
+import { IMAGE_URL } from '../../config/api';
+import { getRandomIntFromRange } from '../../utils/utils';
 
 const phrases = ['Are you serious?!', 'Not enough for you?', 'I\'m delighted with your endurance...', 'I would not drink it'];
 
@@ -9,21 +12,31 @@ const phrases = ['Are you serious?!', 'Not enough for you?', 'I\'m delighted wit
   templateUrl: './make-cocktail.component.html',
   styleUrls: ['./make-cocktail.component.scss']
 })
-export class MakeCocktailComponent implements OnInit {
+export class MakeCocktailComponent implements OnInit, OnDestroy {
   allIngredients: Array<IngredientItem>;
   customIngredients: Array<IngredientItem> = [];
   warning = false;
   shakeEnabled = false;
   warningMessage: string;
+  cocktailsSubscription: Subscription;
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit() {
-    this.cocktailsService.getIngredients()
-      .subscribe((ingredients: Array<IngredientItem>) => this.allIngredients = ingredients);
+    const cocktailsSource$ = this.cocktailsService.getIngredients();
+    this.cocktailsSubscription = cocktailsSource$.subscribe(
+      (ingredients: Array<IngredientItem>) => this.allIngredients = ingredients
+    );
+  }
+
+  ngOnDestroy () {
+    if (this.cocktailsSubscription) {
+      this.cocktailsSubscription.unsubscribe();
+    }
   }
 
   getIngredientImg (i) {
-    return `//www.thecocktaildb.com/images/ingredients/${i.strIngredient1}-Small.png`;
+    const {INGREDIENTS: {URL}, SIZE: {SMALL}} = IMAGE_URL;
+    return `${URL}${i.strIngredient1}${SMALL}`;
   }
 
   addCustomIngredient (ingredient) {
@@ -31,7 +44,7 @@ export class MakeCocktailComponent implements OnInit {
       this.customIngredients.push(ingredient);
     } else {
       this.warning = true;
-      this.warningMessage = this.getMotivatedMessage();
+      this.warningMessage = this.randomWarningMessage;
       setTimeout(() => this.warning = false, 10000);
     }
   }
@@ -54,22 +67,20 @@ export class MakeCocktailComponent implements OnInit {
       this.shakeEnabled = true;
       setTimeout(() => {
         this.shakeEnabled = false;
+        this.onReset();
       }, 5000);
     }
   }
 
-  getMotivatedMessage () {
-    const getRandomInt = (min, max) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
-    return phrases[getRandomInt(0, 3)];
+  get randomWarningMessage () {
+    return phrases[getRandomIntFromRange(0, 3)];
   }
 
   onScroll (e) {
     if (window.innerWidth < 500) {
       e = window.event || e;
       const delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-      document.getElementById('ingredients-bar').scrollLeft -= (delta * 60); // Multiplied by 40
+      document.getElementById('ingredients-bar').scrollLeft -= (delta * 60);
       e.preventDefault();
     }
   }
