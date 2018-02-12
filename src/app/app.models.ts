@@ -19,3 +19,11 @@ export interface IngredientItem {
 export interface SelectedIngredients extends Array<any> {
   [index: number]: IngredientItem;
 }
+
+export interface Category {
+  strCategory: string;
+}
+
+export interface Categories extends Array<any> {
+  [index: number]: Category;
+}

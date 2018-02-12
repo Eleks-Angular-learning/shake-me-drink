@@ -39,3 +39,36 @@
   justify-content: center;
   text-align: center;
 }
+
+.tags {
+  display: flex;
+  flex-wrap: inherit;
+
+  &-el {
+    cursor: pointer;
+    font-size: 16px;
+    color: #e09773;
+    font-weight: bold;
+    padding: 5px;
+    border: 2px solid #e09773;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    position: relative;
+
+    &--selected {
+      color: #fff;
+      border-color: #fff;
+      padding-right: 26px;
+
+      &::after {
+        position: absolute;
+        top: 6px;
+        bottom: 0;
+        right: 8px;
+        content: '✖';
+        font-size: 15px;
+      }
+    }
+  }
+}

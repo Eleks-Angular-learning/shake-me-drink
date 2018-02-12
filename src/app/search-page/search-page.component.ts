@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
-import { CocktailsList } from '../app.models';
+import { CocktailsList, Categories } from '../app.models';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -12,14 +12,21 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   cocktailsList: CocktailsList = [];
   filteredCocktailsList: CocktailsList = [];
   filteredByIngredientCocktails: CocktailsList = [];
+  categories: Categories = [];
+  categoriesSubscription: Subscription;
   cocktailsSubscription: Subscription;
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit () {
-    const cocktailsSource$ = this.cocktailsService.getCocktails();
+    const cocktailsSource$ = this.cocktailsService.getCocktails('Cocktail');
     this.cocktailsSubscription = cocktailsSource$.subscribe(cocktails => {
       this.filteredCocktailsList = cocktails;
       this.cocktailsList = cocktails;
+    });
+
+    const categoriesSource$ = this.cocktailsService.getCategories();
+    this.categoriesSubscription = categoriesSource$.subscribe(categories => {
+      this.categories = categories;
     });
   }
 
