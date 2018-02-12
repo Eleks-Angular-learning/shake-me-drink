@@ -11,11 +11,12 @@ export class SearchComponent {
   @Output() onFilter = new EventEmitter();
   @Output() cocktails = new EventEmitter();
   @Input() categories: Array<Object> = [];
+  @Input() resetData: Function;
 
   radioVal: String = 'category';
   filterValue: String = '';
   selectedCategories: Categories = [{strCategory: 'Cocktail'}];
-  defaultCategory: String = 'Cocktail';
+  //defaultCategory: String = 'Cocktail';
 
   constructor (private cocktailsService: CocktailsService) {
 
@@ -29,8 +30,12 @@ export class SearchComponent {
     this.cocktails.emit({data, category});
   }
 
-  onChange () {
-    this.onGetCocktails([], null);
+  onChange (type) {
+    this.resetData(type);
+  }
+
+  isSelected (category) {
+    return this.selectedCategories.find(el => el.strCategory === category.strCategory);
   }
 
   onSelectCategory (event, category) {

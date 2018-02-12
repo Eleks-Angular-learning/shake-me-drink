@@ -16,7 +16,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   categoriesSubscription: Subscription;
   cocktailsSubscription: Subscription;
   fullCocktailsLists: DataByTagList = [];
-  constructor(private cocktailsService: CocktailsService) { }
+
+  constructor(private cocktailsService: CocktailsService) {
+    this.onResetData = this.onResetData.bind(this);
+  }
 
   ngOnInit () {
     const cocktailsSource$ = this.cocktailsService.getCocktails('Cocktail');
@@ -58,14 +61,14 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   onGetCocktails ({data, category}) {
-    const isEl = this.fullCocktailsLists.find(el => {
+    const isEl = this.fullCocktailsLists.find((el, index) => {
       if (el.category === category) {
-        el.data = data;
+        this.fullCocktailsLists.splice(index, 1);
       }
       return el.category === category;
     });
 
-    if (!isEl) {
+    if (!isEl && category) {
       this.fullCocktailsLists.push({
         category,
         data
@@ -73,7 +76,26 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     }
 
     this.filteredByIngredientCocktails = [];
-    this.fullCocktailsLists.map(el =>  this.filteredByIngredientCocktails = this.filteredByIngredientCocktails.concat(el.data));
+
+    if (category) {
+      this.getCocktailsByCategory();
+    } else {
+      this.filteredByIngredientCocktails = data;
+      this.filteredCocktailsList = data;
+    }
+  }
+
+  getCocktailsByCategory () {
+    this.fullCocktailsLists.map(el => this.filteredByIngredientCocktails = this.filteredByIngredientCocktails.concat(el.data));
     this.filteredCocktailsList = this.filteredByIngredientCocktails;
+  }
+
+  onResetData (type) {
+    if (type === 'category') {
+      this.filteredByIngredientCocktails = [];
+      this.getCocktailsByCategory();
+    } else {
+      this.filteredCocktailsList = [];
+    }
   }
 }
