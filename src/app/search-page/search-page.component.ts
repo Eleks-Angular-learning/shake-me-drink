@@ -62,10 +62,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   onGetCocktails ({data, category}) {
     const isEl = this.fullCocktailsLists.find((el, index) => {
-      if (el.category === category) {
+      const isEqualCategories = el.category === category;
+      if (isEqualCategories) {
         this.fullCocktailsLists.splice(index, 1);
       }
-      return el.category === category;
+      return isEqualCategories;
     });
 
     if (!isEl && category) {

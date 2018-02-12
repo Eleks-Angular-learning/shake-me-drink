@@ -16,11 +16,8 @@ export class SearchComponent {
   radioVal: String = 'category';
   filterValue: String = '';
   selectedCategories: Categories = [{strCategory: 'Cocktail'}];
-  //defaultCategory: String = 'Cocktail';
 
-  constructor (private cocktailsService: CocktailsService) {
-
-  }
+  constructor (private cocktailsService: CocktailsService) {}
 
   filterChanged () {
     this.onFilter.emit(this.filterValue);
@@ -40,12 +37,13 @@ export class SearchComponent {
 
   onSelectCategory (event, category) {
     const isEl = this.selectedCategories.find((el, index) => {
+      const isEqualCategories = el.strCategory === category.strCategory;
 
-      if (el.strCategory === category.strCategory) {
+      if (isEqualCategories) {
         this.selectedCategories.splice(index, 1);
         event.currentTarget.classList.remove('tags-el--selected');
         this.onGetCocktails([], category.strCategory)
-        return el.strCategory === category.strCategory;
+        return isEqualCategories;
       }
     });
 

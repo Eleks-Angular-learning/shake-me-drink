@@ -12,7 +12,7 @@ export class CocktailsService {
   constructor (private http: HttpClient) {}
 
   getCocktails(category): Observable<CocktailsList> {
-    const response = this.http.get(DATA_URL.COCKTAILS + category);
+    const response = this.http.get(`${DATA_URL.COCKTAILS}${category}`);
     return response.pipe(pluck(DATA_KEY))
   }
 
@@ -32,7 +32,7 @@ export class CocktailsService {
   }
 
   getCategories(): Observable<Categories> {
-    const response = this.http.get('//www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+    const response = this.http.get(DATA_URL.CATEGORIES);
     return response.pipe(pluck('drinks'));
   }
 }
