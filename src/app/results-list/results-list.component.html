@@ -1,7 +1,7 @@
 <div class="cocktails-container container">
   <div *ngIf="cocktails.length" class="ui-g container">
     <app-cocktail
-      class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-4 ui-xl-3"
+      class="ui-g-12 ui-sm-12 ui-md-4 ui-lg-3 ui-xl-3"
       *ngFor="let cocktail of cocktails" [cocktail]="cocktail" (cocktailId)="onCocktailClick($event)"></app-cocktail>
   </div>
   <h3 class="no-search-results" *ngIf="!cocktails.length">Nothing was found.</h3>

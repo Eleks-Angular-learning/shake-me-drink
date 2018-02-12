@@ -29,6 +29,15 @@
   &__block {
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 800px) {
+      justify-content: flex-start;
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 0 10px;
   }
 }
 
@@ -38,23 +47,29 @@
   display: flex;
   justify-content: center;
   text-align: center;
+
+  @media screen and (max-width: 800px) {
+    font-size: 32px;
+  }
 }
 
 .tags {
   display: flex;
   flex-wrap: inherit;
+  padding: 10px 20px;
 
   &-el {
     cursor: pointer;
     font-size: 16px;
-    color: #e09773;
+    color: #ff9561;
     font-weight: bold;
     padding: 5px;
-    border: 2px solid #e09773;
+    border: 2px solid #ff9561;
     border-radius: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
+    margin-right: 7px;
+    margin-top: 7px;
     position: relative;
+    background: rgba(0, 0, 0, 0.3);
 
     &--selected {
       color: #fff;

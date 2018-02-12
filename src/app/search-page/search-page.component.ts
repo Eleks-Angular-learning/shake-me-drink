@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
-import { CocktailsList, Categories } from '../app.models';
+import { CocktailsList, Categories, DataByTagList } from '../app.models';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -15,6 +15,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   categories: Categories = [];
   categoriesSubscription: Subscription;
   cocktailsSubscription: Subscription;
+  fullCocktailsLists: DataByTagList = [];
   constructor(private cocktailsService: CocktailsService) { }
 
   ngOnInit () {
@@ -22,6 +23,13 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.cocktailsSubscription = cocktailsSource$.subscribe(cocktails => {
       this.filteredCocktailsList = cocktails;
       this.cocktailsList = cocktails;
+
+      this.filteredByIngredientCocktails.push(...cocktails);
+
+      this.fullCocktailsLists.push({
+        category: 'Cocktail',
+        data: cocktails
+      });
     });
 
     const categoriesSource$ = this.cocktailsService.getCategories();
@@ -47,12 +55,23 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     return list.filter(cocktail => cocktail['strDrink'].match(new RegExp(filter, 'gi')));
   }
 
-  onGetCocktails (data) {
-    if (data.length) {
-      this.filteredByIngredientCocktails = data;
-    } else {
-      this.filteredByIngredientCocktails = this.cocktailsList;
+  onGetCocktails ({data, category}) {
+    const isEl = this.fullCocktailsLists.find(el => {
+      if (el.category === category) {
+        el.data = data;
+      }
+      return el.category === category;
+    });
+
+    if (!isEl) {
+      this.fullCocktailsLists.push({
+        category,
+        data
+      });
     }
+
+    this.filteredByIngredientCocktails = [];
+    this.fullCocktailsLists.map(el =>  this.filteredByIngredientCocktails = this.filteredByIngredientCocktails.concat(el.data));
     this.filteredCocktailsList = this.filteredByIngredientCocktails;
   }
 }

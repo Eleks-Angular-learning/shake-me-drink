@@ -27,3 +27,12 @@ export interface Category {
 export interface Categories extends Array<any> {
   [index: number]: Category;
 }
+
+export interface DataByTag {
+  category: string;
+  data: Categories;
+}
+
+export interface DataByTagList extends Array<any> {
+  [index: number]: DataByTag;
+}
