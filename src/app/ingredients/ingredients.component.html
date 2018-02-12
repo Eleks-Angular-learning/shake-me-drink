@@ -1,13 +1,12 @@
-<div class="ui-g ingredients-wrap">
+<div class="ui-g ingredients-wrap" xmlns="http://www.w3.org/1999/html">
   <app-loader *ngIf="isLoading"></app-loader>
-  <div class="ui-g-4 ui-md-3 ui-lg-2 ingredient" *ngFor="let ingredient of ingredients | sortBy : 'strIngredient1' : 'alphabetical'">
-    <div
-      class="ingredient-el"
-      [class.ingredient-el--selected] = "ingredient.strIngredient1 === selectedIngredient"
+  <div class="ui-g-4 ui-md-3 ui-lg-2 ingredient"
+       *ngFor="let ingredient of ingredients | sortBy : 'strIngredient1' : 'alphabetical'">
+    <div class="ingredient-el"
+      [ngClass]="{'ingredient-el--selected': isSelected(ingredient)}"
       (click)="toggleIngredient($event, ingredient)">
-      <img
-        class="ingredient-img"
-        [src]="'http://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient1 +'-Medium.png'"
+      <img class="ingredient-img"
+        [src]="getIngredientImage(ingredient)"
         onError="this.src='assets/default-bottle.png'">
       <span>{{ingredient.strIngredient1}}</span>
     </div>

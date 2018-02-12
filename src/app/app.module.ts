@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgDragDropModule } from 'ng-drag-drop';
 import { LoginComponent } from './login/login.component';
 import { CocktailComponent } from './cocktail/cocktail.component';
 import { SearchComponent } from './search/search.component';
@@ -56,7 +57,8 @@ import { SortPipe } from '../pipes/sort.pipe';
     RadioButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [CocktailsService, LoginService, LoaderService, AuthGuardService],
   bootstrap: [AppComponent]
