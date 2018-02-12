@@ -11,33 +11,47 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
               private router: Router) { }
 
-  // TODO: uncomment this after integration with firebase
-  // formState = {
-  //   email: '',
-  //   password: '',
-  // };
+  errorMessage = '';
+  submitValue = 'Sign In';
 
-  login (type: string) {
-    this.loginService.login(type)
-      .then(() => this.redirectToMainPage());
+  onChangeState (event) {
+    console.error('onchangeState', event);
+    this.submitValue = event;
+  }
+
+  onClearErrorMessage () {
+    this.errorMessage = '';
+  }
+
+  onCreateAccount ({email, password}) {
+    console.error('onCreateAccount', email, password);
+
+    this.loginService.createAccount(email, password)
+      .then(data => {
+        console.error('onCreateAccount component data', data);
+        this.redirectToMainPage();
+      })
+      .catch(error => {
+        console.error('onCreateAccount component error', error);
+        this.errorMessage = error;
+      });
+  }
+
+  onLogin ({email, password}) {
+    this.loginService.login(email, password)
+      .then(data => {
+        console.error('login component data', data);
+        this.redirectToMainPage();
+      })
+      .catch(error => {
+        console.error('login component error', error);
+        this.errorMessage = error;
+      });
   }
 
   redirectToMainPage () {
     this.router.navigate(['/']);
   }
-
-  // TODO: uncomment this after integration with firebase
-  // resetFormState () {
-  //   Object.keys(this.formState).forEach(key => this.formState[key] = '');
-  // }
-
-  // TODO: uncomment this after integration with firebase
-  // onFormDataChanged (event) {
-  //   const {target} = event;
-  //   const {id, value} = target;
-  //
-  //   this.formState[id] = value;
-  // }
 
   ngOnInit () {
     if (this.loginService.isAuthenticated()) {
