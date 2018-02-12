@@ -9,7 +9,7 @@ import { IMAGE_URL } from '../../config/api';
   styleUrls: ['./ingredients.component.scss']
 })
 export class IngredientsComponent implements OnInit {
-  @Output() cocktails = new EventEmitter();
+  @Output() cocktails = new EventEmitter({});
 
   ingredients: Array<IngredientItem>;
   selectedIngredient = '';
@@ -29,12 +29,12 @@ export class IngredientsComponent implements OnInit {
   toggleIngredient (event, ingredient) {
     if (this.selectedIngredient === ingredient.strIngredient1) {
       this.selectedIngredient = '';
-      this.onGetCocktails([]);
+      this.onGetCocktails([], null);
     } else  {
       this.selectedIngredient = ingredient.strIngredient1;
       this.cocktailsService.getDrinksByIngredient(ingredient.strIngredient1)
         .subscribe(cocktails => {
-          this.onGetCocktails(cocktails);
+          this.onGetCocktails(cocktails, null);
         });
     }
   }
@@ -48,7 +48,7 @@ export class IngredientsComponent implements OnInit {
     return i.strIngredient1 === this.selectedIngredient;
   }
 
-  onGetCocktails (data) {
-    this.cocktails.emit(data);
+  onGetCocktails (data, category) {
+    this.cocktails.emit(data, category);
   }
 }

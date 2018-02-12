@@ -13,8 +13,9 @@ export const IMAGE_URL = {
 };
 
 export const DATA_URL = {
-    COCKTAILS: `${API_URL}filter.php?c=Cocktail`,
+    COCKTAILS: `${API_URL}filter.php?c=`,
     INGREDIENTS: `${API_URL}list.php?i=list`,
     COCKTAIL_BY_ID: `${API_URL}lookup.php?i=`,
-    COCKTAILS_BY_INGREDIENT: `${API_URL}filter.php?i=`
+    COCKTAILS_BY_INGREDIENT: `${API_URL}filter.php?i=`,
+    CATEGORIES: `${API_URL}list.php?c=list`
 };

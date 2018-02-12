@@ -1,20 +1,25 @@
 <div class="container">
   <div class="header">Find your cocktail</div>
   <div class="ui-g search-selector">
-    <div class="ui-g-6 search-selector__block">
-      <p-radioButton value="category" class="search-selector__label" label="By category" [(ngModel)]="radioVal" (click)="onChange()" inputId="opt3"></p-radioButton>
+    <div class="ui-g-12 ui-md-6 search-selector__block">
+      <p-radioButton value="category" class="search-selector__label" label="By category" [(ngModel)]="radioVal" (click)="onChange('category')" inputId="opt3"></p-radioButton>
     </div>
-    <div class="ui-g-6 search-selector__block">
-      <p-radioButton value="ingredient" class="search-selector__label" label="By Ingrediends" [(ngModel)]="radioVal" (click)="onChange()" inputId="opt1"></p-radioButton>
+    <div class="ui-g-12 ui-md-6 search-selector__block">
+      <p-radioButton value="ingredient" class="search-selector__label" label="By Ingrediends" [(ngModel)]="radioVal" (click)="onChange('ingredient')" inputId="opt1"></p-radioButton>
     </div>
   </div>
-  <app-ingredients *ngIf="radioVal == 'ingredient'" (cocktails)="onGetCocktails($event)"></app-ingredients>
+  <app-ingredients *ngIf="radioVal == 'ingredient'" (cocktails)="onGetCocktails($event, category)"></app-ingredients>
   <div class="ui-g">
     <div class="ui-g-12 ui-md-4 ui-md-offset-4">
       <label class="ui-g-12 searchbar">
         <i class="fa fa-search"></i>
         <input type="text" class="ui-g-11" placeholder="Search..." [(ngModel)]="filterValue" (keyup)="filterChanged()" />
       </label>
+    </div>
+    <div class="ui-g-12 ui-md-12 tags" *ngIf="radioVal == 'category'">
+      <div *ngFor="let category of categories" class="tags-el"
+      [class.tags-el--selected]="isSelected(category)"
+      (click)="onSelectCategory($event, category)">{{category.strCategory}}</div>
     </div>
   </div>
 </div>
