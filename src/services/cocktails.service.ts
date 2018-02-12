@@ -3,28 +3,17 @@ import { HttpClient  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { pluck } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-<<<<<<< HEAD
-import { CocktailsList, CocktailDetails, Categories } from '../app/app.models';
-=======
-import { CocktailsList, CocktailDetails, IngredientItem } from '../app/app.models';
+import { CocktailsList, CocktailDetails, IngredientItem, Categories } from '../app/app.models';
 import { DATA_URL } from '../config/api';
 
 const DATA_KEY = 'drinks';
->>>>>>> master
-
 @Injectable()
 export class CocktailsService {
   constructor (private http: HttpClient) {}
 
-<<<<<<< HEAD
   getCocktails(category): Observable<CocktailsList> {
-    const response = this.http.get(`//www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
-    return response.pipe(pluck('drinks'));
-=======
-  getCocktails(): Observable<CocktailsList> {
-    const response = this.http.get(DATA_URL.COCKTAILS);
-    return response.pipe(pluck(DATA_KEY));
->>>>>>> master
+    const response = this.http.get(DATA_URL.COCKTAILS + category);
+    return response.pipe(pluck(DATA_KEY))
   }
 
   getIngredients (): Observable<Array<IngredientItem>> {
