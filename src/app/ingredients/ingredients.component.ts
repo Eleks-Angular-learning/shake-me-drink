@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
 import { IngredientItem } from '../app.models';
+import { IMAGE_URL } from '../../config/api';
+
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
@@ -35,6 +37,15 @@ export class IngredientsComponent implements OnInit {
           this.onGetCocktails(cocktails, null);
         });
     }
+  }
+
+  getIngredientImage (i) {
+    const {INGREDIENTS: {URL}, SIZE: {MEDIUM}} = IMAGE_URL;
+    return `${URL}${i.strIngredient1}${MEDIUM}`;
+  }
+
+  isSelected (i) {
+    return i.strIngredient1 === this.selectedIngredient;
   }
 
   onGetCocktails (data, category) {

@@ -1,4 +1,17 @@
-const API_URL = '//www.thecocktaildb.com/api/json/v1/1/';
+const BASE_URL = '//www.thecocktaildb.com/';
+const API_URL = `${BASE_URL}api/json/v1/1/`;
+
+export const IMAGE_URL = {
+  INGREDIENTS: {
+    URL: `${BASE_URL}images/ingredients/`
+  },
+  SIZE: {
+    SMALL: '-Small.png',
+    MEDIUM: '-Medium.png',
+    LARGE: '.png'
+  }
+};
+
 export const DATA_URL = {
     COCKTAILS: `${API_URL}filter.php?c=`,
     INGREDIENTS: `${API_URL}list.php?i=list`,
