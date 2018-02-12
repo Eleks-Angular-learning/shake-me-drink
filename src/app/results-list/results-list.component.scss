@@ -1,7 +1,8 @@
 .cocktails-container {
   display: flex;
   margin-top: 20px;
-  height: 70vh;
+  padding: 10px 20px;
+  height: 65vh;
   overflow: auto;
   .no-search-results {
     color: white;

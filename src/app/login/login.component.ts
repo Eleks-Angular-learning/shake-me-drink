@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
   //   password: '',
   // };
 
-  login () {
-    this.loginService.login()
+  login (type: string) {
+    this.loginService.login(type)
       .then(() => this.redirectToMainPage());
   }
 

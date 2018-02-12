@@ -4,10 +4,6 @@ import {AngularFireAuth} from 'angularfire2/auth';
 
 @Injectable()
 export class LoginService {
-  user = {
-    displayName: 'Not authorized'
-  };
-
   constructor (public afAuth: AngularFireAuth) {}
 
   isAuthenticated () {
@@ -15,16 +11,26 @@ export class LoginService {
   }
 
   getUserData () {
-    return this.afAuth.auth.currentUser;
+    return this.afAuth.auth.currentUser || JSON.parse(sessionStorage.getItem('loginData'));
   }
 
-  login () {
+  getAuthProvider (type: string) {
+    switch (type) {
+      case 'facebook':
+        return new firebase.auth.FacebookAuthProvider();
+      case 'github':
+        return new firebase.auth.GithubAuthProvider();
+      default:
+        return new firebase.auth.FacebookAuthProvider();
+    }
+  }
+
+  login (type: string) {
     return new Promise(resolve =>
-      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      this.afAuth.auth.signInWithPopup(this.getAuthProvider(type))
         .then(data => {
           const {user} = data;
-          this.user.displayName = user.displayName;
-          sessionStorage.setItem('loginData', user.uid);
+          sessionStorage.setItem('loginData', JSON.stringify(user));
           return resolve(user);
         })
     );

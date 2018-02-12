@@ -30,4 +30,15 @@ export class CocktailPageComponent implements OnInit {
       return `url(//${this.cocktail.strDrinkThumb})`;
     }
   }
+
+  get ingredients () {
+    return Object.keys(this.cocktail || {})
+      .filter(key => key.includes('strIngredient'))
+      .map(key => this.cocktail[key])
+      .filter(item => item);
+  }
+
+  getIngredientImg (i) {
+    return `//www.thecocktaildb.com/images/ingredients/${i}-Small.png`;
+  }
 }

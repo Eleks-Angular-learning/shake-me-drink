@@ -1,8 +1,33 @@
-<div class="cocktail-page">
-  <div class="cocktail-image" [ngStyle]="{backgroundImage: image}">
-  </div>
-  <div class="cocktail-information">
-    <h1 class="title" [textContent]="cocktail?.strDrink"></h1>
-    <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
+<div class="cocktail">
+  <h1 class="cocktail-title" [textContent]="cocktail?.strDrink"></h1>
+  <div class="cocktail-details">
+    <div class="cocktail-image" [ngStyle]="{backgroundImage: image}">
+    </div>
+    <div class="cocktail-information">
+      <div class="cocktail-data">
+        <div class="data-row">
+          <p class="title">Alcohol:</p>
+          <p class="value" [textContent]="cocktail?.strAlcoholic"></p>
+        </div>
+        <div class="data-row">
+          <p class="title">Category:</p>
+          <p class="value" [textContent]="cocktail?.strCategory"></p>
+        </div>
+        <div class="data-row">
+          <p class="title">Glass:</p>
+          <p class="value" [textContent]="cocktail?.strGlass"></p>
+        </div>
+        <div class="data-row ingredients">
+          <p class="title">Ingredients:</p>
+          <div class="ingredients-list">
+            <span class="ingredient" *ngFor="let i of ingredients">
+              <img [src]="getIngredientImg(i)" onError="this.src='assets/default-bottle.png'">
+              <span [textContent]="i"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <p class="instructions" [textContent]="cocktail?.strInstructions"></p>
+    </div>
   </div>
 </div>
