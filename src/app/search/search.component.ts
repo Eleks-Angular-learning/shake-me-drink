@@ -42,7 +42,7 @@ export class SearchComponent {
       if (isEqualCategories) {
         this.selectedCategories.splice(index, 1);
         event.currentTarget.classList.remove('tags-el--selected');
-        this.onGetCocktails([], category.strCategory)
+        this.onGetCocktails([], category.strCategory);
         return isEqualCategories;
       }
     });
