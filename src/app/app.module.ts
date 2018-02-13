@@ -31,6 +31,7 @@ import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
 import { SortPipe } from '../pipes/sort.pipe';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { SocialLoginComponent } from './login/social-login/social-login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SocialLoginComponent } from './login/social-login/social-login.componen
     CocktailPageComponent,
     SortPipe,
     LoginFormComponent,
-    SocialLoginComponent
+    SocialLoginComponent,
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,
