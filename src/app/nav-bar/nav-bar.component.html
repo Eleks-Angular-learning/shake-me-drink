@@ -1,7 +1,7 @@
   <ul class="nav nav-menu">
     <li class="menu-item user-data">
-      <img [src]="user.photoURL" alt="" class="media-object">
-      <p class="menu-item-description">{{user.displayName}}</p>
+      <img [src]="user.photoURL || '../../assets/default-avatar.png'" alt="" class="media-object">
+      <p class="menu-item-description">{{user.displayName || user.email}}</p>
     </li>
     <li class="menu-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <span class="glyphicon glyphicon-home"></span>

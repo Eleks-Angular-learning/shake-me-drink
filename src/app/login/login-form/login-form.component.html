@@ -1,0 +1,38 @@
+<form class="login-form">
+  <h3 class="text-justify" [textContent]="submitValue === 'Sign In'
+    ? 'Login with existed account'
+    : 'Please create new account or use existed'"></h3>
+  <hr>
+  <div class="form-group">
+    <label for="email" class="control-label text-capitalize">User email</label>
+    <input id="email"
+           placeholder="email"
+           type="email"
+           class="form-control"
+           value={{formState.email}}
+           (input)="onFormDataChanged($event)">
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label text-capitalize">Password</label>
+    <input id="password"
+           placeholder="password"
+           type="password"
+           class="form-control"
+           value={{formState.password}}
+           (input)="onFormDataChanged($event)">
+  </div>
+
+  <div class="error-container">{{errorMessage}}</div>
+
+  <div>
+    <input type="submit"
+           class="form-control btn btn-primary"
+           value={{submitValue}}
+           (click)="submitValue === 'Sign In' ? login() : createAccount()">
+  </div>
+
+  <div class="change-form-state"
+       (click)="changeState()"
+       [textContent]="submitValue === 'Sign In' ? 'Create new account' : 'Login with existed account'">
+  </div>
+</form>

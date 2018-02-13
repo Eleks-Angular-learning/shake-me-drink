@@ -29,6 +29,8 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CocktailPageComponent } from './cocktail-page/cocktail-page.component';
 import { SortPipe } from '../pipes/sort.pipe';
+import { LoginFormComponent } from './login/login-form/login-form.component';
+import { SocialLoginComponent } from './login/social-login/social-login.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { SortPipe } from '../pipes/sort.pipe';
     PageNotFoundComponent,
     IngredientsComponent,
     CocktailPageComponent,
-    SortPipe
+    SortPipe,
+    LoginFormComponent,
+    SocialLoginComponent
   ],
   imports: [
     AppRoutingModule,

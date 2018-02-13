@@ -25,7 +25,29 @@ export class LoginService {
     }
   }
 
-  login (type: string) {
+  login (email: string, password: string) {
+
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then(response => {
+          console.error('response', response);
+          sessionStorage.setItem('loginData', JSON.stringify(response));
+          return resolve(response);
+        })
+        .catch(({code, message}) => reject(`Error: ${code} ${message}`));
+    });
+  }
+
+  createAccount (email: string, password: string) {
+    console.error('createAccount service', email, password);
+
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .catch(({code, message}) => reject(`Error: ${code} ${message}`));
+    });
+  }
+
+  socialLogin (type: string) {
     return new Promise(resolve =>
       this.afAuth.auth.signInWithPopup(this.getAuthProvider(type))
         .then(data => {
