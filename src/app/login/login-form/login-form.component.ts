@@ -42,18 +42,20 @@ export class LoginFormComponent implements OnInit {
     this.resetFormState();
   }
 
+  get value () {
+    return this.submitValue === 'Sign In' ? 'Sign Up' : 'Sign In';
+  }
   createAccount () {
     this.createAccountAction.emit(this.formState);
 
     this.resetFormState();
+    this.changeStateAction.emit(this.value);
   }
 
   changeState () {
-    const value = this.submitValue === 'Sign In' ? 'Sign Up' : 'Sign In';
-
     this.resetFormState();
     this.resetErrorMessage();
-    this.changeStateAction.emit(value);
+    this.changeStateAction.emit(this.value);
   }
 
   resetFormState () {

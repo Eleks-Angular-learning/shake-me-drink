@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-social-login',
@@ -6,14 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./social-login.component.scss']
 })
 export class SocialLoginComponent implements OnInit {
+  @Output() loginAction = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  login () {
-    console.error('login');
+  login (type: string) {
+    this.loginAction.emit(type);
   }
 
 }

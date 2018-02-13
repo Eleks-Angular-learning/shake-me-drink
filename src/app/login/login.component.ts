@@ -49,6 +49,11 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  onSocialLogin (type) {
+    this.loginService.socialLogin(type)
+      .then(() => this.redirectToMainPage());
+  }
+
   redirectToMainPage () {
     this.router.navigate(['/']);
   }

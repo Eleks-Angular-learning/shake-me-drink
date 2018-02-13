@@ -19,6 +19,8 @@
       [errorMessage]="errorMessage">
     </app-login-form>
 
-    <app-social-login></app-social-login>
+    <app-social-login
+      (loginAction)="onSocialLogin($event)"
+      *ngIf="submitValue === 'Sign In'"></app-social-login>
   </div>
 </div>
