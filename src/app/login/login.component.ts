@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   submitValue = 'Sign In';
 
   onChangeState (event) {
-    console.error('onchangeState', event);
     this.submitValue = event;
   }
 
@@ -24,8 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   onCreateAccount ({email, password}) {
-    console.error('onCreateAccount', email, password);
-
     this.loginService.createAccount(email, password)
       .then(data => {
         console.error('onCreateAccount component data', data);

@@ -1,17 +1,7 @@
 <div class="login-page">
   <div class="login-dialog">
-
     <app-login-form
-      *ngIf="submitValue === 'Sign In'"
       (loginAction)="onLogin($event)"
-      (clearErrorMessage)="onClearErrorMessage()"
-      (changeStateAction)="onChangeState($event)"
-      [submitValue]="submitValue"
-      [errorMessage]="errorMessage">
-    </app-login-form>
-
-    <app-login-form
-      *ngIf="submitValue === 'Sign Up'"
       (createAccountAction)="onCreateAccount($event)"
       (clearErrorMessage)="onClearErrorMessage()"
       (changeStateAction)="onChangeState($event)"
