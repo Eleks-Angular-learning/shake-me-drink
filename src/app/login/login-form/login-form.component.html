@@ -1,12 +1,12 @@
 <form class="login-form">
-  <h3 [textContent]="submitValue === 'Sign In'
+  <h3 class="text-justify" [textContent]="submitValue === 'Sign In'
     ? 'Login with existed account'
     : 'Please create new account or use existed'"></h3>
   <div class="form-group">
     <label for="email" class="control-label text-capitalize">User email</label>
     <input id="email"
            placeholder="email"
-           type="text"
+           type="email"
            class="form-control"
            value={{formState.email}}
            (input)="onFormDataChanged($event)">
