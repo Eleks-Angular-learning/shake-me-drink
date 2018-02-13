@@ -1,0 +1,196 @@
+.make-cocktail-page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-family: "Architects Daughter", cursive;
+  overflow: hidden;
+  .ingredients-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    width: 120px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    .ingredient {
+      width: 100px;
+      height: 120px;
+      text-align: center;
+      cursor: pointer;
+      img {
+        width: 100px;
+        height: 100px;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+  .cocktail-glass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 150px 50px 150px;
+    height: calc(100% - 200px);
+    width: calc(100% - 120px);
+    h1 {
+      position: absolute;
+      color: #fff;
+      top: 10%;
+    }
+    .glass-container {
+      width: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 600px;
+      img {
+        width: 600px;
+        height: auto;
+        position: absolute;
+      }
+    }
+    .custom-ingredients {
+      position: absolute;
+      top: 25%;
+      width: 400px;
+      z-index: -1;
+      img {
+        width: 75px;
+        height: 75px;
+        filter: blur(1px);
+      }
+    }
+    .shake {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      button {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+@keyframes ff-shake-drink {
+  0% { transform: translate(6px, 3px) rotate(0deg); }
+  10% { transform: translate(-3px, -6px) rotate(-3deg); }
+  20% { transform: translate(-9px, 0px) rotate(3deg); }
+  30% { transform: translate(0px, 6px) rotate(0deg); }
+  40% { transform: translate(3px, -3px) rotate(3deg); }
+  50% { transform: translate(-3px, 6px) rotate(-3deg); }
+  60% { transform: translate(-9px, 3px) rotate(0deg); }
+  70% { transform: translate(6px, 3px) rotate(-3deg); }
+  80% { transform: translate(-3px, -3px) rotate(3deg); }
+  90% { transform: translate(6px, 6px) rotate(0deg); }
+  100% { transform: translate(3px, -6px) rotate(-3deg); }
+}
+
+.shake-animation {
+  animation-name: ff-shake-drink;
+  animation-duration: 0.8s;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .make-cocktail-page {
+    .ingredients-bar {
+      .ingredient {
+        width: 150px;
+        height: 100px;
+        padding: 0 20px;
+        img {
+          width: 75px;
+          height: 75px;
+        }
+        p {
+          text-align: center;
+          white-space: nowrap;
+        }
+      }
+    }
+    .cocktail-glass {
+      h1 {
+        top: 15%;
+      }
+      .glass-container {
+        width: 250px;
+        height: 250px;
+        img {
+          width: 250px;
+          height: auto;
+        }
+      }
+      .custom-ingredients {
+        width: 300px;
+        top: 30%;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .make-cocktail-page {
+    flex-direction: column;
+    align-items: center;
+    .ingredients-bar {
+      height: 75px;
+      width: 100%;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-top: 70px;
+      padding-top: 10px;
+      .ingredient {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+        height: 70px;
+        padding: 0 20px;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+        p {
+          font-size: 10px;
+          text-align: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .cocktail-glass {
+      padding: 50px 20px;
+      h1 {
+        top: 27%;
+        font-size: 1.5em;
+      }
+      .custom-ingredients {
+        width: 200px;
+        top: 50%;
+        img {
+          width: 50px;
+          height: 50px;
+          filter: blur(1px);
+        }
+      }
+      .shake {
+        flex-direction: row;
+        padding: 0;
+      }
+    }
+  }
+}
