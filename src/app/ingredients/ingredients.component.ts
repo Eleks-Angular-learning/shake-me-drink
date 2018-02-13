@@ -20,6 +20,7 @@ export class IngredientsComponent implements OnInit {
     this.cocktailsService.getIngredients()
       .subscribe((ingredients: Array<IngredientItem>) => {
         this.ingredients = ingredients;
+        console.log('this.ingredients', JSON.stringify(this.ingredients));
         this.isLoading = false;
       });
   }
