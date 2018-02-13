@@ -3,7 +3,7 @@
       <img [src]="user.photoURL || '../../assets/default-avatar.png'" alt="" class="media-object">
       <p class="menu-item-description">{{user.displayName || user.email}}</p>
     </li>
-    <li class="menu-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <li class="menu-item" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <span class="glyphicon glyphicon-home"></span>
       <p class="menu-item-description">Home</p>
     </li>
