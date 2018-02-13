@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Nazar Tsyhanyuk
 * Sergiy Krechko
 * Viktoriia Chernyshuk
-* Volodymyr Shevchuk
+* Volodymyr Shevchuk @dosandk
 * Andrii Vasylytsia
 * Oleksandr Kolomiyets
 
