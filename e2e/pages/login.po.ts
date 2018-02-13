@@ -1,16 +1,20 @@
 import {BasePage} from './base.po';
+import {shakeCore} from '../helpers/shake';
 
 const locators = {
   organizationIdInput: '#organizationID',
   userNameInput: '#username',
   passwordInput: '#password',
-  loginButton: '#login'
+  loginButton: '#login',
+  facebookEmail: '#email',
+  facebookPassword: '#pass',
+  facebookLoginButton: '#loginbutton'
 };
 
 const loginData = {
   organization: 'ELEKS',
-  userName: 'Alex',
-  password: 'AlexPassword',
+  userName: 'conceptmaster1798@gmail.com',
+  password: 'nK4AkBqRZK1i2gmVsXGz',
 };
 
 export class LoginPage extends BasePage {
@@ -19,12 +23,19 @@ export class LoginPage extends BasePage {
   }
 
   async login(): Promise<void> {
-    const organizationIdInput = await this.getPageElement('organizationIdInput');
-    const userNameInput = await this.getPageElement('userNameInput');
-    const passwordInput = await this.getPageElement('passwordInput');
     const loginButton = await this.getPageElement('loginButton');
+    await loginButton.click();
+    const windows = await shakeCore.browser.getAllWindowHandles();
+    await shakeCore.browser.switchTo().window(windows[1]);
+    await this.loginFacebook();
+    await shakeCore.browser.switchTo().window(windows[0]);
+  }
 
-    await organizationIdInput.sendKeys(loginData['organization']);
+  async loginFacebook(): Promise<void> {
+    const userNameInput = await this.getPageElement('facebookEmail');
+    const passwordInput = await this.getPageElement('facebookPassword');
+    const loginButton = await this.getPageElement('facebookLoginButton');
+
     await userNameInput.sendKeys(loginData['userName']);
     await passwordInput.sendKeys(loginData['password']);
     await loginButton.click();

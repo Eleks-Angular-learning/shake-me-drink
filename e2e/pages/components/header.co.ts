@@ -1,3 +1,5 @@
+import {WebElement} from 'selenium-webdriver';
+
 const locators = {
   homeIcon: 'span.glyphicon.glyphicon-home',
   searchIcon: 'span.glyphicon.glyphicon-search',
@@ -8,11 +10,11 @@ const locators = {
 export class HeaderCO {
   constructor(private shakeCore) { }
 
-  getLocator (key: string): Promise<string> {
+  getLocator (key: string): string {
     return locators[key];
   }
 
-  async getComponentElement(locatorKey: string): Promise<any> {
+  async getComponentElement(locatorKey: string): Promise<WebElement> {
     return this.shakeCore.getElement(this.getLocator(locatorKey));
   }
 
