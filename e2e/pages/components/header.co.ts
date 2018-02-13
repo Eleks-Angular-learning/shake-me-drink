@@ -18,7 +18,7 @@ export class HeaderCO {
     return this.shakeCore.getElement(this.getLocator(locatorKey));
   }
 
-  async clickIcon(locatorKey: string): Promise<any> {
+  async clickIcon(locatorKey: string): Promise<void> {
     return (await this.getComponentElement(locatorKey)).click();
   }
 }
