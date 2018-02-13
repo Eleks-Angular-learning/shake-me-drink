@@ -60,7 +60,14 @@
         margin-bottom: 50px;
         border-radius: 10px 10px 60px 60px;
         z-index: -1;
-        background: linear-gradient(to top, rgba(44, 2, 11, 0.2), rgba(104, 0, 1, 0.4), rgba(189, 6, 2, 0.6), rgba(217, 115, 125, 0.8));
+        background: linear-gradient(to top,
+          rgba(15, 14, 12, 0.2),
+          rgba(109, 55, 68, 0.4),
+          rgba(118, 25, 18, 0.6),
+          rgba(217, 115, 125, 0.6),
+          rgba(209, 64, 47, 0.6),
+          rgba(239, 146, 53, 0.7),
+          rgba(240, 225, 110, 0.8));
         transform: perspective(100px) rotateX(-4deg);
         transition: height 3s ease-in-out;
       }
