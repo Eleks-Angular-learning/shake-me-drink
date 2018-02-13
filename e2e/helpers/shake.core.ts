@@ -4,7 +4,9 @@ export class ShakeCore {
   constructor(
     public browser = protractor.browser,
     public defaultWaitToAppear = 20000,
-    public ec = protractor.ExpectedConditions
+    public ec = protractor.ExpectedConditions,
+    public $ = protractor.$,
+    public $$ = protractor.$$,
   ) {
   }
 

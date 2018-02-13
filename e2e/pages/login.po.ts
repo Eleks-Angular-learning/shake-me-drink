@@ -2,19 +2,15 @@ import {BasePage} from './base.po';
 import {shakeCore} from '../helpers/shake';
 
 const locators = {
-  organizationIdInput: '#organizationID',
-  userNameInput: '#username',
+  singInButton: '[class*=github]',
+  emailInput: '#login_field',
   passwordInput: '#password',
-  loginButton: '#login',
-  facebookEmail: '#email',
-  facebookPassword: '#pass',
-  facebookLoginButton: '#loginbutton'
+  loginButton: '[type=submit]'
 };
 
 const loginData = {
-  organization: 'ELEKS',
-  userName: 'conceptmaster1798@gmail.com',
-  password: 'nK4AkBqRZK1i2gmVsXGz',
+  userName: 'd3puNjQwMDFAa3VpcWEuY29t',
+  password: 'cXd3ZXIxMjM0UVdFUiFxd2U',
 };
 
 export class LoginPage extends BasePage {
@@ -23,21 +19,21 @@ export class LoginPage extends BasePage {
   }
 
   async login(): Promise<void> {
-    const loginButton = await this.getPageElement('loginButton');
+    const loginButton = await this.getPageElement('singInButton');
     await loginButton.click();
     const windows = await shakeCore.browser.getAllWindowHandles();
     await shakeCore.browser.switchTo().window(windows[1]);
-    await this.loginFacebook();
+    await this.loginGithub();
     await shakeCore.browser.switchTo().window(windows[0]);
   }
 
-  async loginFacebook(): Promise<void> {
-    const userNameInput = await this.getPageElement('facebookEmail');
-    const passwordInput = await this.getPageElement('facebookPassword');
-    const loginButton = await this.getPageElement('facebookLoginButton');
+  async loginGithub(): Promise<void> {
+    const userNameInput = await this.getPageElement('emailInput');
+    const passwordInput = await this.getPageElement('passwordInput');
+    const loginButton = await this.getPageElement('loginButton');
 
-    await userNameInput.sendKeys(loginData['userName']);
-    await passwordInput.sendKeys(loginData['password']);
+    await userNameInput.sendKeys(Buffer.from(loginData['userName'], 'base64').toString());
+    await passwordInput.sendKeys(Buffer.from(loginData['password'], 'base64').toString());
     await loginButton.click();
   }
 }

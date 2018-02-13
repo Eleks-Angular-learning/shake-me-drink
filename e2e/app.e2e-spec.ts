@@ -1,6 +1,7 @@
 import * as shake from './helpers/shake';
 
-const searchTexts = ['12313131', '-))*(&*^*&%%$$#$%', 'JKDHJKnsvjdgjof*(&%$#%'];
+const negativeSearchTexts = ['12313131', '-))*(&*^*&%%$$#$%', 'JKDHJKnsvjdgjof*(&%$#%'];
+const positiveSearchTexts = ['Abbey', 'Martini', 'Soda'];
 let loginPO = null;
 let headerCO = null;
 let searchPO = null;
@@ -23,13 +24,24 @@ describe('Test Cocktail Maker Party Maker', () => {
     await headerCO.clickIcon('homeIcon');
   });
 
-  searchTexts.forEach(text => {
-    it(`Check no results found for: '${text}'.`, async () => {
+  negativeSearchTexts.forEach(text => {
+    it(`Negative search: no results found for: '${text}'.`, async () => {
       const searchInput = await searchPO.getPageElement('searchInput');
       await searchInput.sendKeys(text);
+
+      expect(await shake.$(searchPO.getLocator('nothingFoundLabel')).isPresent()).toBe(true);
       const labelNoResult = await searchPO.getPageElement('nothingFoundLabel');
 
       expect(await labelNoResult.getText()).toEqual('Nothing was found.');
+    });
+  });
+
+  positiveSearchTexts.forEach(text => {
+    it(`Positive search: results should be found for: '${text}'.`, async () => {
+      const searchInput = await searchPO.getPageElement('searchInput');
+      await searchInput.sendKeys(text);
+
+      expect(await shake.$(searchPO.getLocator('appCocktail')).isPresent()).toBe(true);
     });
   });
 });
