@@ -9,7 +9,7 @@ import { IMAGE_URL } from '../../config/api';
   styleUrls: ['./ingredients.component.scss']
 })
 export class IngredientsComponent implements OnInit {
-  @Output() cocktails = new EventEmitter({});
+  @Output() cocktails = new EventEmitter();
 
   ingredients: Array<IngredientItem>;
   selectedIngredient = '';
@@ -49,6 +49,6 @@ export class IngredientsComponent implements OnInit {
   }
 
   onGetCocktails (data, category) {
-    this.cocktails.emit(data, category);
+    this.cocktails.emit({data, category});
   }
 }
