@@ -23,7 +23,8 @@ export class SearchComponent {
     this.onFilter.emit(this.filterValue);
   }
 
-  onGetCocktails (data, category) {
+  onGetCocktails (args) {
+    const {data, category} = args;
     this.cocktails.emit({data, category});
   }
 
@@ -42,14 +43,14 @@ export class SearchComponent {
       if (isEqualCategories) {
         this.selectedCategories.splice(index, 1);
         event.currentTarget.classList.remove('tags-el--selected');
-        this.onGetCocktails([], category.strCategory)
+        this.onGetCocktails({data: [], category: category.strCategory})
         return isEqualCategories;
       }
     });
 
     if (!isEl) {
       this.cocktailsService.getCocktails(category.strCategory)
-        .subscribe(cocktails => this.onGetCocktails(cocktails, category.strCategory));
+        .subscribe(cocktails => this.onGetCocktails({data: cocktails, category: category.strCategory}));
       this.selectedCategories.push(category);
       event.currentTarget.classList.add('tags-el--selected');
     }
