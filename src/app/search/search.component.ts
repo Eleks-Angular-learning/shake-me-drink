@@ -47,6 +47,9 @@ export class SearchComponent {
       }
     });
 
+
+    debugger;
+
     if (!isEl) {
       this.cocktailsService.getCocktails(category.strCategory)
         .subscribe(cocktails => this.onGetCocktails(cocktails, category.strCategory));
