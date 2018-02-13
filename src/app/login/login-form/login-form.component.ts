@@ -1,12 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnChanges {
   @Input() errorMessage = '';
+  @Input() userData = {email: ''};
   @Input() submitValue: 'Sign In' | 'Sign Up' = 'Sign In';
 
   @Output() loginAction = new EventEmitter();
@@ -22,6 +23,12 @@ export class LoginFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+    if (this.userData && this.userData.email) {
+      this.formState.email = this.userData.email;
+    }
   }
 
   onFormDataChanged (event) {

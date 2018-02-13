@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   submitValue = 'Sign In';
 
+  get userData () {
+    return this.loginService.getUserData();
+  }
+
   onChangeState (event) {
     this.submitValue = event;
   }
