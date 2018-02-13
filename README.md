@@ -3,7 +3,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
 
-## Team - Fast and Furious
+## Team - Fast and Furious 🏎
 
 * Nazar Tsyhanyuk [@nazartsyhanyuk](https://github.com/nazartsyhanyuk)
 * Sergiy Krechko [@skrechko](https://github.com/skrechko)
