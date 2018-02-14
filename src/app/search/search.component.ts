@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
-
+import { Categories } from '../app.models';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,19 +10,49 @@ import { CocktailsService } from '../../services/cocktails.service';
 export class SearchComponent {
   @Output() onFilter = new EventEmitter();
   @Output() cocktails = new EventEmitter();
+  @Input() categories: Array<Object> = [];
+  @Input() resetData: Function;
 
   radioVal: String = 'category';
   filterValue: String = '';
+  selectedCategories: Categories = [{strCategory: 'Cocktail'}];
+
+  constructor (private cocktailsService: CocktailsService) {}
 
   filterChanged () {
     this.onFilter.emit(this.filterValue);
   }
 
-  onGetCocktails (data) {
-    this.cocktails.emit(data);
+  onGetCocktails (args) {
+    const {data, category} = args;
+    this.cocktails.emit({data, category});
   }
 
-  onChange () {
-    this.onGetCocktails([]);
+  onChange (type) {
+    this.resetData(type);
+  }
+
+  isSelected (category) {
+    return this.selectedCategories.find(el => el.strCategory === category.strCategory);
+  }
+
+  onSelectCategory (event, category) {
+    const isEl = this.selectedCategories.find((el, index) => {
+      const isEqualCategories = el.strCategory === category.strCategory;
+
+      if (isEqualCategories) {
+        this.selectedCategories.splice(index, 1);
+        event.currentTarget.classList.remove('tags-el--selected');
+        this.onGetCocktails({data: [], category: category.strCategory});
+        return isEqualCategories;
+      }
+    });
+
+    if (!isEl) {
+      this.cocktailsService.getCocktails(category.strCategory)
+        .subscribe(cocktails => this.onGetCocktails({data: cocktails, category: category.strCategory}));
+      this.selectedCategories.push(category);
+      event.currentTarget.classList.add('tags-el--selected');
+    }
   }
 }

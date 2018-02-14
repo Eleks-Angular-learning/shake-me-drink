@@ -22,3 +22,20 @@ export interface IngredientItem extends Object {
 export interface SelectedIngredients extends Array<Object> {
   [index: number]: IngredientItem;
 }
+
+export interface Category {
+  strCategory: string;
+}
+
+export interface Categories extends Array<any> {
+  [index: number]: Category;
+}
+
+export interface DataByTag {
+  category: string;
+  data: Categories;
+}
+
+export interface DataByTagList extends Array<any> {
+  [index: number]: DataByTag;
+}

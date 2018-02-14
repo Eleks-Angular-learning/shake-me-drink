@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -7,7 +6,13 @@ import { pluck, mergeAll, catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/Rx';
 
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
-import { CocktailsList, CocktailItem, CocktailDetails, IngredientItem } from '../app/app.models';
+import {
+  Categories,
+  CocktailsList,
+  CocktailItem,
+  CocktailDetails,
+  IngredientItem
+} from '../app/app.models';
 import { DATA_URL } from '../config/api';
 
 export const DATA_KEY = 'drinks';
@@ -22,8 +27,8 @@ export class CocktailsService {
       this.handleError = httpErrorHandler.createHandleError('CocktailsService');
     }
 
-  getCocktails(): Observable<CocktailsList> {
-    const url = DATA_URL.COCKTAILS;
+  getCocktails(category): Observable<CocktailsList> {
+    const url = `${DATA_URL.COCKTAILS}${category}`;
     return this.http.get(url)
       .pipe(
         pluck(DATA_KEY),
@@ -61,5 +66,10 @@ export class CocktailsService {
         catchError<CocktailsList, CocktailsList>(
           this.handleError<CocktailsList>('getDrinksByIngredient', <CocktailsList>[]))
       );
+  }
+
+  getCategories(): Observable<Categories> {
+    const response = this.http.get(DATA_URL.CATEGORIES);
+    return response.pipe(pluck('drinks'));
   }
 }

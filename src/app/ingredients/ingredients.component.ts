@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
 import { IngredientItem } from '../app.models';
+import { IMAGE_URL } from '../../config/api';
+
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
@@ -27,17 +29,26 @@ export class IngredientsComponent implements OnInit {
   toggleIngredient (event, ingredient) {
     if (this.selectedIngredient === ingredient.strIngredient1) {
       this.selectedIngredient = '';
-      this.onGetCocktails([]);
+      this.onGetCocktails([], null);
     } else  {
       this.selectedIngredient = ingredient.strIngredient1;
       this.cocktailsService.getDrinksByIngredient(ingredient.strIngredient1)
         .subscribe(cocktails => {
-          this.onGetCocktails(cocktails);
+          this.onGetCocktails(cocktails, null);
         });
     }
   }
 
-  onGetCocktails (data) {
-    this.cocktails.emit(data);
+  getIngredientImage (i) {
+    const {INGREDIENTS: {URL}, SIZE: {MEDIUM}} = IMAGE_URL;
+    return `${URL}${i.strIngredient1}${MEDIUM}`;
+  }
+
+  isSelected (i) {
+    return i.strIngredient1 === this.selectedIngredient;
+  }
+
+  onGetCocktails (data, category) {
+    this.cocktails.emit({data, category});
   }
 }

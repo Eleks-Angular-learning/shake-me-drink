@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CocktailsService } from '../../services/cocktails.service';
-import { CocktailsList } from '../app.models';
+import { CocktailsList, Categories, DataByTagList } from '../app.models';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -12,14 +12,32 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   cocktailsList: CocktailsList = [];
   filteredCocktailsList: CocktailsList = [];
   filteredByIngredientCocktails: CocktailsList = [];
+  categories: Categories = [];
+  categoriesSubscription: Subscription;
   cocktailsSubscription: Subscription;
-  constructor(private cocktailsService: CocktailsService) { }
+  fullCocktailsLists: DataByTagList = [];
+
+  constructor(private cocktailsService: CocktailsService) {
+    this.onResetData = this.onResetData.bind(this);
+  }
 
   ngOnInit () {
-    const cocktailsSource$ = this.cocktailsService.getCocktails();
+    const cocktailsSource$ = this.cocktailsService.getCocktails('Cocktail');
     this.cocktailsSubscription = cocktailsSource$.subscribe(cocktails => {
       this.filteredCocktailsList = cocktails;
       this.cocktailsList = cocktails;
+
+      this.filteredByIngredientCocktails.push(...cocktails);
+
+      this.fullCocktailsLists.push({
+        category: 'Cocktail',
+        data: cocktails
+      });
+    });
+
+    const categoriesSource$ = this.cocktailsService.getCategories();
+    this.categoriesSubscription = categoriesSource$.subscribe(categories => {
+      this.categories = categories;
     });
   }
 
@@ -42,12 +60,44 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     return list.filter(filterFn);
   }
 
-  onGetCocktails (data) {
-    if (data.length) {
-      this.filteredByIngredientCocktails = data;
-    } else {
-      this.filteredByIngredientCocktails = this.cocktailsList;
+  onGetCocktails (args) {
+    const {data, category} = args;
+    const isEl = this.fullCocktailsLists.find((el, index) => {
+      const isEqualCategories = el.category === category;
+      if (isEqualCategories) {
+        this.fullCocktailsLists.splice(index, 1);
+      }
+      return isEqualCategories;
+    });
+
+    if (!isEl && category) {
+      this.fullCocktailsLists.push({
+        category,
+        data
+      });
     }
+
+    this.filteredByIngredientCocktails = [];
+
+    if (category) {
+      this.getCocktailsByCategory();
+    } else {
+      this.filteredByIngredientCocktails = data;
+      this.filteredCocktailsList = data;
+    }
+  }
+
+  getCocktailsByCategory () {
+    this.fullCocktailsLists.map(el => this.filteredByIngredientCocktails = this.filteredByIngredientCocktails.concat(el.data));
     this.filteredCocktailsList = this.filteredByIngredientCocktails;
+  }
+
+  onResetData (type) {
+    if (type === 'category') {
+      this.filteredByIngredientCocktails = [];
+      this.getCocktailsByCategory();
+    } else {
+      this.filteredCocktailsList = [];
+    }
   }
 }

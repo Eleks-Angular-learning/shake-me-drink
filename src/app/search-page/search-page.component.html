@@ -1,4 +1,4 @@
 <div class="container-fluid search-page">
-  <app-search (onFilter)="onFilterChange($event)" (cocktails)="onGetCocktails($event)" ></app-search>
+  <app-search (onFilter)="onFilterChange($event)" (cocktails)="onGetCocktails($event)" [categories]="categories" [resetData]="onResetData"></app-search>
   <app-results-list [cocktails]="filteredCocktailsList"></app-results-list>
 </div>
