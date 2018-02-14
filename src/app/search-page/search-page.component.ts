@@ -89,7 +89,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   getCocktailsByCategory () {
     this.fullCocktailsLists.map(el =>
-      this.filteredByIngredientCocktails = <CocktailsList>this.filteredByIngredientCocktails.concat(el.data));
+      this.filteredByIngredientCocktails = this.filteredByIngredientCocktails.concat(el.data));
     this.filteredCocktailsList = this.filteredByIngredientCocktails;
   }
 
