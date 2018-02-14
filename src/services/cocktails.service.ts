@@ -1,55 +1,65 @@
 
 import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pluck, tap, catchError, map } from 'rxjs/operators';
+import { pluck, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { pipe } from 'rxjs/Rx';
-import { CocktailsList, CocktailDetails, IngredientItem } from '../app/app.models';
-import { DATA_URL } from '../config/api';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { pipe } from 'rxjs/Rx';
+import { mergeAll } from 'rxjs/operators/mergeAll';
+import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { CocktailsList, CocktailItem, CocktailDetails, IngredientItem } from '../app/app.models';
+import { DATA_URL } from '../config/api';
 
 export const DATA_KEY = 'drinks';
-const handleNullable = (data: CocktailsList) => {
-  return data === null || data === undefined ? Observable.of([]) : Observable.of(data);
-};
 
 @Injectable()
 export class CocktailsService {
-  constructor (private http: HttpClient) {}
+  private handleError: HandleError;
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+  constructor (
+    private http: HttpClient,
+    private httpErrorHandler: HttpErrorHandler) {
+      this.handleError = httpErrorHandler.createHandleError('CocktailsService');
     }
-    // return an ErrorObservable with a user-facing error message
-    return Observable.throw(
-      'Something bad happened; please try again later.');
-  }
 
   getCocktails(): Observable<CocktailsList> {
-    const response = this.http.get(DATA_URL.COCKTAILS);
-    return response.pipe(pluck(DATA_KEY));
+    const url = DATA_URL.COCKTAILS;
+    return this.http.get(url)
+      .pipe(
+        pluck(DATA_KEY),
+        catchError<CocktailsList, CocktailsList>(
+          this.handleError<CocktailsList>('getCocktails', []))
+      );
   }
 
   getIngredients (): Observable<Array<IngredientItem>> {
-    const response =  this.http.get(DATA_URL.INGREDIENTS);
-    return response.pipe(pluck(DATA_KEY));
+    const url = DATA_URL.INGREDIENTS;
+    return this.http.get(DATA_URL.INGREDIENTS)
+      .pipe(
+        pluck(DATA_KEY),
+        catchError<Array<IngredientItem>, Array<IngredientItem>>(
+          this.handleError<Array<IngredientItem>>('getIngredients', []))
+      );
   }
 
-  getCocktailById (id): Observable<CocktailDetails> {
-    const response = this.http.get(`${DATA_URL.COCKTAIL_BY_ID}${id}`);
-    return response.pipe(pluck(DATA_KEY));
+  getCocktailById (id: number): Observable<CocktailDetails> {
+    const url = `${DATA_URL.COCKTAIL_BY_ID}${id}`;
+    return  this.http.get(url)
+      .pipe(
+        pluck(DATA_KEY),
+        mergeAll<CocktailDetails>(),
+        catchError<CocktailDetails, CocktailDetails>(
+          this.handleError<CocktailDetails>('getCocktailById', <CocktailDetails>{}))
+      );
   }
 
-  getDrinksByIngredient (ingredient): Observable<CocktailDetails> {
-    const response = this.http.get(`${DATA_URL.COCKTAILS_BY_INGREDIENT}${ingredient}`);
-    return response.pipe(pluck(DATA_KEY));
+  getDrinksByIngredient (ingredient: string): Observable<CocktailsList> {
+    const url = `${DATA_URL.COCKTAILS_BY_INGREDIENT}${ingredient}`;
+    return this.http.get(url)
+      .pipe(
+        pluck(DATA_KEY),
+        catchError<CocktailsList, CocktailsList>(
+          this.handleError<CocktailsList>('getDrinksByIngredient', <CocktailsList>[]))
+      );
   }
 }

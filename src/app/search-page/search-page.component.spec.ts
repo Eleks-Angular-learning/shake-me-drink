@@ -1,14 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchPageComponent } from './search-page.component';
+import { SearchComponent } from '../search/search.component';
+import { ResultsListComponent } from '../results-list/results-list.component';
+import { CocktailsService } from '../../services/cocktails.service';
+import { HttpClientModule } from '@angular/common/http';
 
-xdescribe('SearchPageComponent', () => {
+describe('SearchPageComponent', () => {
   let component: SearchPageComponent;
   let fixture: ComponentFixture<SearchPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchPageComponent ]
+      imports: [
+        HttpClientModule
+      ],
+      declarations: [ SearchPageComponent, SearchComponent ],
+      providers: [ CocktailsService ]
     })
     .compileComponents();
   }));
@@ -19,7 +27,7 @@ xdescribe('SearchPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -19,7 +19,7 @@ export class CocktailPageComponent implements OnInit {
     this.route.params.subscribe(event => {
       const cocktailSource$ = this.cocktailsSvc.getCocktailById(event.id);
       this.cocktailSubscription = cocktailSource$.subscribe(cocktail => {
-        this.cocktail = cocktail[0];
+        this.cocktail = cocktail;
       });
     });
 

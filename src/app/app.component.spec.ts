@@ -21,8 +21,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        VideoBackgroundComponent,
-        LoaderComponent
+        LoaderComponent,
+        VideoBackgroundComponent
       ],
       providers: [ LoaderService ]
     });

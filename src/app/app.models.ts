@@ -1,4 +1,4 @@
-export interface CocktailItem {
+export interface CocktailItem extends Object {
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
@@ -11,14 +11,14 @@ export interface CocktailDetails extends CocktailItem {
   strGlass: string;
 }
 
-export interface CocktailsList extends Array<any> {
+export interface CocktailsList extends Array<Object> {
   [index: number]: CocktailItem;
 }
 
-export interface IngredientItem {
+export interface IngredientItem extends Object {
   strIngredient1: string;
 }
 
-export interface SelectedIngredients extends Array<any> {
+export interface SelectedIngredients extends Array<Object> {
   [index: number]: IngredientItem;
 }
