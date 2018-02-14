@@ -27,7 +27,7 @@ export class CocktailsService {
       this.handleError = httpErrorHandler.createHandleError('CocktailsService');
     }
 
-  getCocktails(category): Observable<CocktailsList> {
+  getCocktails(category: string): Observable<CocktailsList> {
     const url = `${DATA_URL.COCKTAILS}${category}`;
     return this.http.get(url)
       .pipe(

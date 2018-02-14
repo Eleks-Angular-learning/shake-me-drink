@@ -55,7 +55,8 @@ describe('CocktailsService', () => {
   /// ** Sample case for obtaining a collection of objects **
   ///////////////////////////////////////////////////////////
   describe('#getCocktails', () => {
-    const COCKTAILS_URL = DATA_URL.COCKTAILS;
+    const category = 'sampleCategory';
+    const COCKTAILS_URL = `${DATA_URL.COCKTAILS}${category}`;
 
     beforeEach(() => {
       cocktailsService = TestBed.get(CocktailsService);
@@ -70,7 +71,7 @@ describe('CocktailsService', () => {
     it('should return expected cocktails (called once)', () => {
       const expectedCocktails = makeCocktails(2);
       const responseData = makeResponse(2);
-      cocktailsService.getCocktails().subscribe(
+      cocktailsService.getCocktails(category).subscribe(
         cocktails =>
           expect(cocktails).toEqual(expectedCocktails, 'should return expected cocktails'),
         fail
@@ -82,7 +83,7 @@ describe('CocktailsService', () => {
 
     it('should be OK returning no cocktails', () => {
       const responseData = makeResponse();
-      cocktailsService.getCocktails().subscribe(
+      cocktailsService.getCocktails(category).subscribe(
         cocktails =>
           expect(cocktails.length).toEqual(0, 'should have empty cocktails array'),
         fail
@@ -96,9 +97,9 @@ describe('CocktailsService', () => {
       const responseData1 = makeResponse(1);
       const responseData2 = makeResponse(2);
       const expectedCocktails = makeCocktails(2);
-      cocktailsService.getCocktails().subscribe();
-      cocktailsService.getCocktails().subscribe();
-      cocktailsService.getCocktails().subscribe(
+      cocktailsService.getCocktails(category).subscribe();
+      cocktailsService.getCocktails(category).subscribe();
+      cocktailsService.getCocktails(category).subscribe(
         cocktails => expect(cocktails).toEqual(expectedCocktails, 'should return expected cocktails'),
         fail
       );
@@ -114,7 +115,7 @@ describe('CocktailsService', () => {
     it('should turn 404 into an empty cocktails result', () => {
       // respond with a 404 and the error message in the body
       const msg = 'deliberate 404 error 1';
-      cocktailsService.getCocktails().subscribe(
+      cocktailsService.getCocktails(category).subscribe(
         cocktails => {
             expect(messageService.messages[0]).toMatch(new RegExp(msg, 'gi'), 'should catch bad response status code');
             expect(cocktails.length).toEqual(0, 'should return empty cocktails array');
