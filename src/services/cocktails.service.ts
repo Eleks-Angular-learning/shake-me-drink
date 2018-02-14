@@ -1,11 +1,11 @@
 
-import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pluck, catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { pluck, mergeAll, catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/Rx';
-import { mergeAll } from 'rxjs/operators/mergeAll';
+
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { CocktailsList, CocktailItem, CocktailDetails, IngredientItem } from '../app/app.models';
 import { DATA_URL } from '../config/api';
