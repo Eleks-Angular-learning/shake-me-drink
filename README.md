@@ -1,17 +1,16 @@
-# Cocktails
-![Logo](logo.jpg)
+# Shake-me-drink ![build](https://api.travis-ci.org/Eleks-Angular-learning/shake-me-drink.svg?branch=master)
+![Logo](logo.jpg) 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
 
-## Team - Fast and Furious
+## Team - Fast and Furious 🚀
 
-* Andrii Vasylytsia
-* Nazar Tsyhanyuk
-* Sergiy Krechko
-* Viktoriia Chernyshuk
-* Volodymyr Shevchuk
-* Andrii Vasylytsia
-* Oleksandr Kolomiyets
+* Nazar Tsyhanyuk [@nazartsyhanyuk](https://github.com/nazartsyhanyuk)
+* Sergiy Krechko [@skrechko](https://github.com/skrechko)
+* Viktoriia Chernyshuk [@vickierose](https://github.com/vickierose)
+* Volodymyr Shevchuk [@dosandk](https://github.com/dosandk)
+* Khrystyna Pylypchuk [@PylypchukKhrystyna](https://github.com/PylypchukKhrystyna)
+* Oleksandr Kolomiyets [@AlexKolomi](https://github.com/AlexKolomi)
 
 ## Development server
 

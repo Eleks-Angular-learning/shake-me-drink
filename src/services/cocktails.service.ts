@@ -13,7 +13,7 @@ export class CocktailsService {
 
   getCocktails(category): Observable<CocktailsList> {
     const response = this.http.get(`${DATA_URL.COCKTAILS}${category}`);
-    return response.pipe(pluck(DATA_KEY))
+    return response.pipe(pluck(DATA_KEY));
   }
 
   getIngredients (): Observable<Array<IngredientItem>> {
