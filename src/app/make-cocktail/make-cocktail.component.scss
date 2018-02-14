@@ -18,6 +18,7 @@
     .ingredient {
       width: 100px;
       height: 120px;
+      margin-top: 20px;
       text-align: center;
       cursor: pointer;
       img {
@@ -46,12 +47,29 @@
       width: 600px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       height: 600px;
       img {
         width: 600px;
         height: auto;
         position: absolute;
+      }
+      .drink-container {
+        width: 400px;
+        height: 0;
+        margin-bottom: 50px;
+        border-radius: 10px 10px 60px 60px;
+        z-index: -1;
+        background: linear-gradient(to top,
+          rgba(15, 14, 12, 0.2),
+          rgba(109, 55, 68, 0.4),
+          rgba(118, 25, 18, 0.6),
+          rgba(217, 115, 125, 0.6),
+          rgba(209, 64, 47, 0.6),
+          rgba(239, 146, 53, 0.7),
+          rgba(240, 225, 110, 0.8));
+        transform: perspective(100px) rotateX(-4deg);
+        transition: height 3s ease-in-out;
       }
     }
     .custom-ingredients {
@@ -98,6 +116,10 @@
   transform-origin:50% 50%;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+
+.fulfill {
+  height: 400px !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -156,6 +178,7 @@
       .ingredient {
         display: flex;
         flex-direction: column;
+        margin-top: 0;
         align-items: center;
         width: 100px;
         height: 70px;

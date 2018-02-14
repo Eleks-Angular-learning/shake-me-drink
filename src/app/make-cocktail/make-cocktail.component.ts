@@ -17,6 +17,7 @@ export class MakeCocktailComponent implements OnInit, OnDestroy {
   customIngredients: Array<IngredientItem> = [];
   warning = false;
   shakeEnabled = false;
+  isFulfilled = false;
   warningMessage: string;
   cocktailsSubscription: Subscription;
   constructor(private cocktailsService: CocktailsService) { }
@@ -60,6 +61,7 @@ export class MakeCocktailComponent implements OnInit, OnDestroy {
   onReset () {
     this.customIngredients = [];
     this.warning = false;
+    this.isFulfilled = false;
   }
 
   onShake () {
@@ -67,7 +69,7 @@ export class MakeCocktailComponent implements OnInit, OnDestroy {
       this.shakeEnabled = true;
       setTimeout(() => {
         this.shakeEnabled = false;
-        this.onReset();
+        this.isFulfilled = true;
       }, 5000);
     }
   }
