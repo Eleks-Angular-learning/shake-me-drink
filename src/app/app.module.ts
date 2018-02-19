@@ -24,6 +24,8 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { LoginService } from '../services/login.service';
 import { LoaderService } from '../services/loader.service';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { HttpErrorHandler } from '../services/http-error-handler.service';
+import { MessageService } from '../services/message.service';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -66,7 +68,14 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     NgDragDropModule.forRoot()
   ],
-  providers: [CocktailsService, LoginService, LoaderService, AuthGuardService],
+  providers: [
+    CocktailsService,
+    LoginService,
+    LoaderService,
+    AuthGuardService,
+    MessageService,
+    HttpErrorHandler
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

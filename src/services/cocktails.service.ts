@@ -1,34 +1,71 @@
-
-import { HttpClient  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pluck } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { CocktailsList, CocktailDetails, IngredientItem, Categories } from '../app/app.models';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { pluck, mergeAll, catchError } from 'rxjs/operators';
+import { pipe } from 'rxjs/Rx';
+
+import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import {
+  Categories,
+  CocktailsList,
+  CocktailItem,
+  CocktailDetails,
+  IngredientItem
+} from '../app/app.models';
 import { DATA_URL } from '../config/api';
 
-const DATA_KEY = 'drinks';
+export const DATA_KEY = 'drinks';
+
 @Injectable()
 export class CocktailsService {
-  constructor (private http: HttpClient) {}
+  private handleError: HandleError;
 
-  getCocktails(category): Observable<CocktailsList> {
-    const response = this.http.get(`${DATA_URL.COCKTAILS}${category}`);
-    return response.pipe(pluck(DATA_KEY));
+  constructor (
+    private http: HttpClient,
+    private httpErrorHandler: HttpErrorHandler) {
+      this.handleError = httpErrorHandler.createHandleError('CocktailsService');
+    }
+
+  getCocktails(category: string): Observable<CocktailsList> {
+    const url = `${DATA_URL.COCKTAILS}${category}`;
+    return this.http.get(url)
+      .pipe(
+        pluck(DATA_KEY),
+        catchError<CocktailsList, CocktailsList>(
+          this.handleError<CocktailsList>('getCocktails', []))
+      );
   }
 
   getIngredients (): Observable<Array<IngredientItem>> {
-    const response =  this.http.get(DATA_URL.INGREDIENTS);
-    return response.pipe(pluck(DATA_KEY));
+    const url = DATA_URL.INGREDIENTS;
+    return this.http.get(DATA_URL.INGREDIENTS)
+      .pipe(
+        pluck(DATA_KEY),
+        catchError<Array<IngredientItem>, Array<IngredientItem>>(
+          this.handleError<Array<IngredientItem>>('getIngredients', []))
+      );
   }
 
-  getCocktailById (id): Observable<CocktailDetails> {
-    const response = this.http.get(`${DATA_URL.COCKTAIL_BY_ID}${id}`);
-    return response.pipe(pluck(DATA_KEY));
+  getCocktailById (id: number): Observable<CocktailDetails> {
+    const url = `${DATA_URL.COCKTAIL_BY_ID}${id}`;
+    return  this.http.get(url)
+      .pipe(
+        pluck(DATA_KEY),
+        mergeAll<CocktailDetails>(),
+        catchError<CocktailDetails, CocktailDetails>(
+          this.handleError<CocktailDetails>('getCocktailById', <CocktailDetails>{}))
+      );
   }
 
-  getDrinksByIngredient (ingredient): Observable<CocktailDetails> {
-    const response = this.http.get(`${DATA_URL.COCKTAILS_BY_INGREDIENT}${ingredient}`);
-    return response.pipe(pluck(DATA_KEY));
+  getDrinksByIngredient (ingredient: string): Observable<CocktailsList> {
+    const url = `${DATA_URL.COCKTAILS_BY_INGREDIENT}${ingredient}`;
+    return this.http.get(url)
+      .pipe(
+        pluck(DATA_KEY),
+        catchError<CocktailsList, CocktailsList>(
+          this.handleError<CocktailsList>('getDrinksByIngredient', <CocktailsList>[]))
+      );
   }
 
   getCategories(): Observable<Categories> {
